@@ -1,0 +1,70 @@
+---
+import Base from "../layouts/Base.astro";
+import { PROJECTS } from "../data";
+import type { ImageMetadata } from "astro";
+
+const TEAM = [
+  {
+    name: "A V Ajay Kiran",
+    role: "AI Growth Leader / Strategy Lead",
+    bio: "AI Growth & Digital Transformation Leader with 14+ years of experience. Specializes in AI product development, growth marketing, UX strategy, and AI video generation. Based in Hyderabad, India, with experience across India, Germany, the US, and Australia.",
+    image: "/imports/ajay-kiran.png",
+    role: "primary",
+    links: [
+      { text: "AI Growth", href: "/#services" },
+      { text: "Digital Transformation", href: "/#services" },
+      { text: "Growth Marketing", href: "/#services" },
+      { text: "AI Video Generation", href: "/#services" },
+      { text: "Website Architecture", href: "/#services" },
+      { text: "Brand Strategy", href: "/#services" },
+    ],
+  },
+  {
+    name: "Partner",
+    role: "Digital Transformation / UX / Dev Lead",
+    bio: "AI Growth & Growth Marketing Expert with 14+ years of experience. Specializes in AI-powered workflows, UX strategy, and scalable web architecture.",
+    image: "/imports/ajay-kiran.png",
+    role: "primary",
+  },
+];
+---
+
+<Base>
+  <section class="team-section">
+    <div class="max-w-7xl mx-auto px-6 py-24 md:py-32">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">One team. Every step.</h1>
+        <p class="text-muted-foreground text-lg">Design, engineering, and AI — same team, not silos.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 pt-16">
+        {TEAM.map((member) => (
+          <article class="glass card-hover rounded-2xl p-12 text-center transition-all hover:border-blue-500/30">
+            <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-violet-600 rounded-full mx-auto mb-6 overflow-hidden border-4 border-blue-400/30">
+              <img src={member.image} alt={member.name} class="w-full h-full object-cover object-top" loading="lazy" />
+            </div>
+            <h3 class="text-2xl font-bold mb-2">{member.name}</h3>
+            <p class="text-blue-600 font-medium mb-4">{member.role}</p>
+            <p class="text-sm text-muted-foreground mb-6">
+              {member.bio}
+            </p>
+            {member.links && (
+              <div class="flex flex-wrap gap-2 justify-center mb-6">
+                {member.links.map((link) => (
+                  <a key={link.text} href={link.href} class="tag text-xs">{link.text}</a>
+                ))}
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-16 text-center">
+        <p class="text-muted-foreground mb-6">Want to see more of our work?</p>
+        <a href="/work" class="btn-primary px-8 py-4 rounded-full text-base font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25">
+          Visit Our Work →
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

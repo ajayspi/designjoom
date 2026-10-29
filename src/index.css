@@ -121,6 +121,36 @@ h1, h2, h3, h4 {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
+
+/* Hero editorial headline fade-in: blur → sharp, opacity 0 → 1 */
+@keyframes hero-title-in {
+  0% { filter: blur(6px); opacity: 0; }
+  100% { filter: blur(0); opacity: 1; }
+}
+
+/* Service card reveal on scroll */
+@keyframes card-reveal {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Project card staggered reveal */
+@keyframes project-reveal {
+  0% { opacity: 0; transform: translateY(32px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Whip transition between sections */
+@keyframes whip {
+  0% { opacity: 0; transform: translateX(-30px) skewX(-10deg); }
+  100% { opacity: 1; transform: translateX(0) skewX(0); }
+}
+
+/* Pulse on CTA */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }

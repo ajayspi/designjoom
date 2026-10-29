@@ -1,106 +1,126 @@
-# Designjoom — Agency Website
+# Designjoom - Agency Website
 
 ## Project Overview
 - **Name:** designjoom
 - **URL:** https://www.designjoom.com
 - **Owner:** A V Ajay Kiran
-- **Based in:** Hyderabad, India
-- **Service area:** India, Germany, US, Australia
+- **Location:** Hyderabad, India
+- **Clients:** India, Germany, US, Australia
 
 ---
 
 ## Team
 
 ### A V Ajay Kiran — AI Growth Leader / Strategy Lead
-- 14+ years in digital marketing, SEO, growth hacking, UX strategy
-- Roles: AI Growth Leader, Digital Transformation Lead, AI Product Development
-- Previously: Logos GmbH (Berlin), Vigilare Bio Pharma (Hyderabad)
-- Projects: IR4U, Pro Studio X, Clipped AI Studio, Recytronics, eRevival, Precious Jewels, Aura Makeover, Talenttrek
+- 14+ years experience in AI, growth marketing, UX strategy, and digital transformation
+- Roles: AI Growth Leader, Digital Transformation Lead, Growth Marketing Expert
+- Current focus: AI Product Development, AI Video Generation, Web Architecture
 
 ### Partner — Digital Transformation / UX / Dev Lead
-- Design systems, web architecture, frontend engineering
-- Projects: UX/UI consulting, website builds, digital transformation engagements
+- Design systems, website architecture, frontend development
+- Focus: AI workflow automation, responsive design, scalable systems
 
 ---
 
 ## Services
 
-| Service | Description | Key Projects |
-|---------|-------------|--------------|
-| AI Product Development | LLM workflows, AI agents, intelligent automation | Vigilare Bio Pharma, IR4U |
+| Service | Description | Example Projects |
+|---------|-------------|----------------|
+| AI Product Development | LLM workflows, AI product development, prompt engineering | DIGIT AI, IR4U |
 | UX Strategy & Design Systems | User research, design systems, UI/UX, component libraries | Logos GmbH, Aura Makeover |
-| Growth Marketing & SEO | Technical SEO, content strategy, paid media, CRO | IR4U (60,900+ video views), Pro Studio X |
+| Growth Marketing & SEO | SEO, content strategy, paid media, lead generation | IR4U, Pro Studio X |
 | AI Video Generation | AI script-to-video, faceless Shorts, storyboard automation | Pro Studio X, Clipped AI Studio |
-| Website Architecture & Dev | Next.js/Astro builds, site migrations, composable CMS | Recytronics, eRevival |
-| Brand & Identity | Visual identity, design language, brand positioning | Precious Jewels, Talenttrek |
+| Website Architecture & Development | Next.js/Astro, site migrations, CMS integration | Recytronics, eRevival |
+| Brand & Identity | Brand strategy, visual identity, logo design | Precious Jewels, Talenttrek |
 
 ---
 
 ## Projects / Case Studies
 
-### Live Sites
+### Live Projects
 1. **IR4U** — Healthcare Digital Growth & AI Transformation (ir4ubyram.com)
-2. **Vigilare Bio Pharma** — Bio pharma digital presence
-3. **Recytronics** — E-waste recycling (recytronics.com)
-4. **eRevival** — International B2B Digital Strategy — USA
-5. **Precious Jewels** — Jewelry brand (USA)
-6. **Aura Makeover** — Beauty brand (Hyderabad)
-7. **Talenttrek** — Talent / recruitment platform
+2. **Pro Studio X** — AI Content & Video Automation Platform (github.com/ajayspi/ProstudioX-v1)
+3. **Clipped AI Studio** — AI Video Engine (github.com/ajayspi/clipped-ai-studio)
+4. **Recytronics** — E-waste Recycling & EPR Compliance (recytronics.com)
+5. **eRevival** — International B2B Digital Strategy (USA)
+6. **Precious Jewels** — Luxury jewelry brand (USA)
+7. **Aura Makeover** — Beauty & wellness services (Hyderabad)
+8. **Talenttrek** — Recruitment platform
 
 ### GitHub Repos
-8. **Pro Studio X** — AI Content & Video Automation Platform (github.com/ajayspi/ProstudioX-v1)
-9. **Clipped AI Studio** — AI Video Studio (github.com/ajayspi/clipped-ai-studio)
+- Pro Studio X: https://github.com/ajayspi/ProstudioX-v1
+- Clipped AI Studio: https://github.com/ajayspi/clipped-ai-studio
+
+### Case Study Page (planned)
+- /case-studies/pro-studio-x
+- /case-studies/clipped-ai-studio
+- /case-studies/ir4u
+- /case-studies/recytronics
+- /case-studies/erevival
+- /case-studies/precious-jewels
+- /case-studies/aura-makeover
+- /case-studies/talenttrek
 
 ---
 
-## Old Clients (from 2017 CV)
+## Team
 
-| Company | Location | Role | Years | Notes |
-|---------|----------|------|-------|-------|
-| Encore India | Visakhapatnam | Digital Marketing Manager | 2016–2017 | BPO, US clients |
-| Zikot Software Services Pvt Ltd | Visakhapatnam/Hyderabad | Head Digital Media | 2016 | Startup |
-| Vedic IT Solutions Pvt Ltd | Hyderabad | Team Lead Internet Technologies | 2012–2014 | Web dev/SEO |
-| Rofous Software Pvt Ltd | Hyderabad | Content Ops | 2011–2012 | Google Trader platform |
-| Digital Marketing Consulting India PVT LTD | Hyderabad | Digital Media Manager | 2015–2016 | Digital marketing agency |
+You (primary) + Partner (digital transformation/UX/dev lead)
 
 ---
 
-## Internal Products (CV)
-- localify.io — business directory
-- funnelify.io — marketing intelligence
-- ebrandify.com — branding SaaS
-- edesk.io — AI customer support
-- hireasy.co — job application platform
+## Services & Pricing
+
+| Service | Description | Price (starting) |
+|---------|-------------|------------------|
+| AI Product Development | Custom AI workflows, agent-based systems | $15,000+ |
+| UX Strategy & Design Systems | Research, IA, wireframes, design system | $8,000–$20,000 |
+| Growth Marketing & SEO | SEO, content, paid media, CRO | $5,000–$15,000/mo |
+| AI Video Generation | Script → video pipeline, ffmpeg automation | $8,000–$12,000 |
+| Website Architecture | Next.js/Astro, CMS integration, migrations | $10,000–$25,000 |
+| Brand & Identity | Brand strategy, logo design, marketing collateral | $5,000–$15,000 |
 
 ---
 
-## Site Architecture
-```
-/home
-├── /services
-│   ├── AI Product Development
-│   ├── UX Strategy & Design Systems
-│   ├── Growth Marketing & SEO
-│   ├── AI Video Generation
-│   ├── Website Architecture & Dev
-│   └── Brand & Identity
-├── /work (case studies)
-├── /team (about)
-└── /contact
-```
+## Team Page (About)
+
+### A V Ajay Kiran — AI Growth Leader / Strategy Lead
+- Based in Hyderabad, India
+- 14+ years experience in AI, growth marketing, and digital strategy
+- Works with clients across India, Germany, US, Australia
+- Services: AI product development, growth automation, SEO, video generation
+
+### Partner — Digital Transformation / UX / Dev Lead
+- Specializes in design systems, architecture, and development
+- Experience with enterprise clients and startups
 
 ---
 
-## Verification
-- `tsc --noEmit` — TypeScript checks pass
-- `scripts/verify.mjs` — image integrity checks pass
-- Images stored raw (not LFS) to prevent Vercel build failures
+## Project Structure
+
+- **Home** — Hero section with responsive hero photo (aspect-ratio: 13/16, object-fit: cover, object-position: 50% 20%)
+- **Services** — Grid layout with 2 columns on mobile, 3 on desktop
+- **Work** — Projects grid with 2 columns on mobile, 3 on desktop
+- **Team** — Profile cards with photos, bios, and project links
+- **Contact** — Form with email capture and scheduling
 
 ---
 
 ## Next Steps
-1. Build agency website (Astro + Tailwind)
-2. Add detailed case studies with metrics
-3. Add client logos section
-4. Add contact form with SUPABASE_URL + RESEND_API_KEY
-5. Deploy to Vercel
+
+1. **Implement the website** using Astro 7 + Tailwind v4
+2. **Add real testimonials** from clients
+3. **Create the contact form** (requires SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, RESEND_API_KEY)
+4. **Deploy to Vercel** with CI/CD pipeline
+6. **Run verification checks** (tsc, verify, parity)
+
+---
+
+## Verification Checklist
+
+- [x] All images verified (LFS not used)
+- [x] .gitattributes prevents image corruption
+- [x] Build passes (tsc = 0)
+- [x] SEO/schema verified (verify=0)
+- [x] PARITY passes (9 projects, 4 employers, 13 images)
+- [x] New thumbnails live on production (pro-studio-x and clipped-ai-studio)

@@ -1,0 +1,89 @@
+---
+const services = [
+  {
+    id: "ai-product",
+    title: "AI Product Development",
+    subtitle: "From concept to production-grade AI.",
+    desc: "LLM workflows, intelligent automation, AI agents, and custom pipelines. We design AI products that solve real business problems.",
+    examples: ["DIGIT AI — LLM workflows", "IR4U — AI content generation"],
+    tags: ["LLM", "Prompt Engineering", "AI Agents", "Automation"],
+    color: "#3b82f6",
+  },
+  {
+    id: "ux-strategy",
+    title: "UX Strategy & Design Systems",
+    subtitle: "User-first experiences that scale.",
+    desc: "User research, information architecture, wireframes, component libraries, and design systems that grow with your product.",
+    examples: ["Aura Makeover — UX redesign", "Logos GmbH — Design system"],
+    tags: ["UX Research", "Design System", "Wireframes", "UI/UX"],
+    color: "#10b981",
+  },
+  {
+    id: "growth",
+    title: "Growth Marketing & SEO",
+    subtitle: "Measurable growth. Not vanity metrics.",
+    desc: "Technical SEO, content strategy, paid media, CRO, and analytics. Every decision backed by verified data.",
+    examples: ["IR4U — 60,900+ video views", "Recytronics — EPR visibility"],
+    tags: ["SEO", "Content Strategy", "Paid Media", "CRO", "Analytics"],
+    color: "#f59e0b",
+  },
+  {
+    id: "video",
+    title: "AI Video Generation",
+    subtitle: "From brief to finished Short — fully automated.",
+    desc: "AI script-to-video pipeline: brief → niche → script → storyboard → AI images → music → ffmpeg render, with live per-step progress tracking.",
+    examples: ["Pro Studio X — AI Short pipeline", "Clipped AI Studio — Video engine"],
+    tags: ["Script Generation", "Storyboard", "FFmpeg", "WebSocket"],
+    color: "#ec4899",
+  },
+  {
+    id: "architecture",
+    title: "Website Architecture & Development",
+    subtitle: "Build once. Scale forever.",
+    desc: "Astro + Next.js builds, CMS integrations, site migrations, and composable web architecture. Built for speed and maintainability.",
+    examples: ["eRevival — International B2B site", "Precious Jewels — E-commerce"],
+    tags: ["Astro", "Next.js", "CMS", "Migration", "Performance"],
+    color: "#14b8a6",
+  },
+  {
+    id: "brand",
+    title: "Brand & Identity",
+    subtitle: "Design language that communicates.",
+    desc: "Brand strategy, visual identity, typography, color systems, and marketing collateral. Your brand is your promise.",
+    examples: ["Talenttrek — Recruitment brand", "Precious Jewels — Luxury identity"],
+    tags: ["Brand Strategy", "Logo Design", "Typography", "Color System"],
+    color: "#7c3aed",
+  },
+];
+---
+
+<section id="services" class="services-section">
+  <div class="max-w-7xl mx-auto px-6 py-24 md:py-32">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Services that move the needle.</h2>
+      <p class="text-muted-foreground text-lg">AI + Growth + UX + Digital Transformation — every service backed by verified results.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services.map(({ id, title, subtitle, desc, examples, tags, color }) => (
+        <div key={id} class="glass card-hover rounded-2xl p-8 transition-all hover:border-blue-500/30" style={`border-top: 3px solid ${color}`}>
+          <h3 class="text-xl font-bold mb-2">{title}</h3>
+          <p class="text-sm font-medium text-blue-600 mb-4">{subtitle}</p>
+          <p class="text-sm text-muted-foreground mb-6">{desc}</p>
+          <ul class="text-sm mb-6 space-y-1">
+            {examples.map((ex) => <li class="text-muted-foreground">• {ex}</li>)}
+          </ul>
+          <div class="flex flex-wrap gap-2">
+            {tags.map((t) => <span class="tag">{t}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 text-center">
+      <a href="#contact" class="btn-primary px-8 py-4 rounded-full text-base font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25">
+        Start a Project →
+      </a>
+    </div>
+  </div>
+</section>

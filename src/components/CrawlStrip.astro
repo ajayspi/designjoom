@@ -1,0 +1,37 @@
+---
+import { P, CRAWL_ITEMS } from "../data";
+
+const items = [...CRAWL_ITEMS, ...CRAWL_ITEMS];
+---
+
+<div class="crawl">
+  {/* ponytail: decorative duplicate loop, hidden from assistive tech. Pure CSS keyframes —
+      no JS, and the global reduced-motion backstop already stops it. */}
+  <div class="marquee-track" aria-hidden="true">
+    {items.map((item, i) => (
+      <span style={`padding:0 24px;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.15em;color:${item === "·" ? P.blue : "#6b7fa8"};font-weight:${item === "·" ? 700 : 400}`}>
+        {item}
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .crawl {
+    border-top: 1px solid rgba(59, 130, 246, .12);
+    border-bottom: 1px solid rgba(59, 130, 246, .12);
+    background: rgba(5, 8, 16, .8);
+    overflow: hidden;
+    padding: 14px 0;
+  }
+  .marquee-track {
+    display: flex;
+    white-space: nowrap;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+</style>

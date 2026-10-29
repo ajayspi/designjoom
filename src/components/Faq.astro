@@ -1,0 +1,56 @@
+---
+import { FAQ } from "../seo";
+---
+
+{/* Visible FAQ matching the FAQPage JSON-LD in Base.astro. Native <details> — an
+    accessible disclosure with no JS state. The two must not diverge: schema-only FAQ
+    content is a violation, and hidden-from-users FAQ is cloaking. */}
+<section id="faq" style="padding:0 0 100px">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="head" data-reveal>
+      <div class="eyebrow">FAQ</div>
+      <h2>Common <span class="text-shimmer">Questions</span></h2>
+    </div>
+
+    <div data-reveal>
+      {FAQ.map(({ q, a }) => (
+        <details class="qa">
+          <summary>{q}</summary>
+          <p>{a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .head { text-align: center; margin-bottom: 48px; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--blue); letter-spacing: .2em; margin-bottom: 12px; }
+  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #f0f4ff; }
+  .qa {
+    background: rgba(15, 25, 55, .8);
+    border: 1px solid rgba(59, 130, 246, .2);
+    border-radius: 12px;
+    padding: 0 20px;
+    margin-bottom: 10px;
+  }
+  .qa[open] { border-color: rgba(59, 130, 246, .45); }
+  summary {
+    cursor: pointer;
+    padding: 16px 0;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: .95rem;
+    color: #d8e4ff;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; color: var(--blue); font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
+  details[open] summary::after { content: '−'; }
+  summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .qa p { padding-bottom: 16px; margin: 0; color: #8898b8; font-size: .88rem; line-height: 1.75; }
+</style>

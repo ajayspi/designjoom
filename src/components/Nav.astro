@@ -1,0 +1,55 @@
+---
+import Icon from "./Icon.astro";
+import djLogo from "../imports/Designjoom-logo-1.png";
+
+const links = ["About", "Metrics", "Experience", "Projects", "Skills", "Contact"];
+const logoFilter = "invert(1) sepia(1) saturate(6) hue-rotate(195deg) brightness(1.4)";
+---
+
+<nav class="nav" data-nav>
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+    <a href="https://designjoom.com" target="_blank" rel="noopener noreferrer" class="nav-logo">
+      <img src={djLogo.src} alt="DesignJoom" width={171} height={28}
+        style={`height:28px;width:auto;filter:${logoFilter};transition:opacity .2s`} />
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      {links.map((l) => <a href={`#${l.toLowerCase()}`} class="nav-link">{l}</a>)}
+    </div>
+    <a href="mailto:ajayspi@gmail.com" class="hire-btn hidden md:flex">
+      <Icon name="zap" size={12} /> Hire Me
+    </a>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    padding: 20px 0;
+    transition: background-color .5s, border-color .5s, padding .5s, backdrop-filter .5s;
+  }
+  .nav.scrolled {
+    background: rgba(5, 8, 16, .92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(59, 130, 246, .1);
+    padding: 12px 0;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo:hover { opacity: .9; }
+  .hire-btn {
+    align-items: center; gap: 8px;
+    padding: 8px 16px; border-radius: 999px;
+    background: rgba(59, 130, 246, .1);
+    border: 1px solid rgba(59, 130, 246, .3);
+    color: var(--blue);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .78rem;
+    text-decoration: none;
+    transition: background-color .3s;
+  }
+  .hire-btn:hover { background: rgba(59, 130, 246, .2); }
+</style>

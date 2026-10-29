@@ -1,0 +1,25 @@
+---
+import { IDENTITY } from "../seo";
+import djLogo from "../imports/Designjoom-logo-1.png";
+---
+
+<footer style="border-top:1px solid rgba(59,130,246,0.1);padding:24px 0">
+  <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-between items-center gap-4">
+    <div class="flex items-center gap-4">
+      <span class="name text-shimmer">{IDENTITY.name}</span>
+      <span style="color:#2a3450;font-size:.8rem">·</span>
+      <a href="https://designjoom.com" target="_blank" rel="noopener noreferrer" aria-label="DesignJoom — opens in a new tab">
+        <img src={djLogo.src} alt="DesignJoom" width={134} height={22} loading="lazy"
+             style="height:22px;width:auto;filter:invert(1) sepia(1) saturate(5) hue-rotate(195deg) brightness(1.3);opacity:.8" />
+      </a>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#4a5a78">
+      AI GROWTH · DIGITAL TRANSFORMATION · UX · AUTOMATION
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#4a5a78">© 2026 · Built with AI</div>
+  </div>
+</footer>
+
+<style>
+  .name { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.1rem; }
+</style>

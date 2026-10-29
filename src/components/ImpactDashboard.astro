@@ -1,0 +1,165 @@
+---
+import { P, PROJECT_IMPACT, GROWTH_DATA, SKILLS_RADAR, FUNNEL_DATA } from "../data";
+import { points, linePath, areaPath, radarPath, twoLines } from "../lib/chart";
+
+// ── Project reach bars ────────────────────────────────────────────────────────
+const BW = 320, BH = 200, BASE = 168, TOP = 22;
+const maxViews = Math.max(...PROJECT_IMPACT.map((d) => d.views));
+const slot = (BW - 40) / PROJECT_IMPACT.length;
+const BAR_COLORS = [P.blue, P.violet, P.cyan, P.green, P.amber, P.pink];
+const bars = PROJECT_IMPACT.map((d, i) => {
+  const h = ((d.views / maxViews) * (BASE - TOP));
+  return {
+    ...d,
+    color: BAR_COLORS[i % BAR_COLORS.length],
+    x: 30 + slot * i + slot / 2,
+    y: BASE - h,
+    h,
+    label: twoLines(d.name),
+  };
+});
+
+// ── Growth trajectory area ────────────────────────────────────────────────────
+const AW = 320, AH = 200, ABASE = 172, ATOP = 20, GMAX = 180;
+const areaPts = points(GROWTH_DATA.map((d) => d.growth), AW - 40, ABASE - ATOP)
+  .map((p) => ({ x: p.x + 30, y: p.y + ATOP }));
+const yearX = (i: number) => 30 + (i / (GROWTH_DATA.length - 1)) * (AW - 40);
+const gy = (v: number) => ABASE - (v / GMAX) * (ABASE - ATOP);
+
+// ── Competency radar ──────────────────────────────────────────────────────────
+const RX = 150, RY = 108, RR = 72;
+const radar = SKILLS_RADAR.map((d, i) => {
+  const a = (i / SKILLS_RADAR.length) * Math.PI * 2 - Math.PI / 2;
+  return {
+    ...d,
+    x: RX + Math.cos(a) * (RR + 24),
+    y: RY + Math.sin(a) * (RR + 20),
+    anchor: Math.abs(Math.cos(a)) < 0.3 ? "middle" : Math.cos(a) > 0 ? "start" : "end",
+    ex: RX + Math.cos(a) * RR,
+    ey: RY + Math.sin(a) * RR,
+  };
+});
+const rings = [25, 50, 75, 100].map((p) => ({ p, d: radarPath(SKILLS_RADAR.map(() => p), RX, RY, RR) }));
+---
+
+<section style="padding:80px 0 100px;background:rgba(5,8,20,0.6)">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="head" data-reveal>
+      <div class="eyebrow">IMPACT DASHBOARD</div>
+      <h2>Data Behind <span class="text-shimmer">Every Result</span></h2>
+    </div>
+
+    <div class="grid" style="grid-template-columns:1fr 1fr;gap:20px;min-width:0">
+
+      {/* Project reach */}
+      <div class="glass-bright panel" style={`border:1px solid ${P.blue}18`} data-reveal role="img"
+           aria-label="Bar chart: video views in thousands across IR4U 60.9, Vigilare 33.2, Pro Studio X 12, Recytronics 8, Precious Jewels 9 and eRevival 5">
+        <div class="panel-title">Project Reach</div>
+        <div class="panel-sub">Video views (thousands) across projects</div>
+        <svg viewBox={`0 0 ${BW} ${BH}`} width="100%" role="presentation">
+          {bars.map((b) => (
+            <>
+              <rect x={b.x - 11} y={b.y} width="22" height={b.h} rx="4" fill={b.color} opacity="0.85" />
+              <text x={b.x} y={b.y - 5} text-anchor="middle" fill={b.color} font-size="10" font-family="JetBrains Mono, monospace">{b.views}</text>
+              <text x={b.x} y={BASE + 14} text-anchor="middle" fill="#6b7fa8" font-size="9" font-family="JetBrains Mono, monospace">
+                {b.label.map((line, i) => <tspan x={b.x} dy={i === 0 ? 0 : 10}>{line}</tspan>)}
+              </text>
+            </>
+          ))}
+          <line x1="30" y1={BASE} x2={BW - 10} y2={BASE} stroke="rgba(59,130,246,0.15)" />
+        </svg>
+      </div>
+
+      {/* IR4U funnel */}
+      <div class="glass-bright panel" style={`border:1px solid ${P.violet}18`} data-reveal data-reveal-delay="100">
+        <div class="panel-title">IR4U Acquisition Funnel</div>
+        <div class="panel-sub">Instagram → WhatsApp conversion journey</div>
+        <div class="funnel">
+          {FUNNEL_DATA.map((f) => {
+            const pct = (f.value / FUNNEL_DATA[0].value) * 100;
+            return (
+              <div>
+                <div class="funnel-row">
+                  <span>{f.stage}</span>
+                  <span class="funnel-val" style={`color:${f.color}`}>{f.value.toLocaleString()}</span>
+                </div>
+                <div class="funnel-bar">
+                  <div class="funnel-fill" style={`width:${pct}%;background:${f.color};box-shadow:0 0 8px ${f.color}55`}></div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div class="conv">
+          <span class="conv-label">CONVERSION RATE:</span>
+          <span class="conv-val">0.84%</span>
+          <span class="conv-note"> impressions → WhatsApp</span>
+        </div>
+      </div>
+
+      {/* Growth trajectory */}
+      <div class="glass-bright panel" style={`border:1px solid ${P.cyan}18`} data-reveal data-reveal-delay="160" role="img"
+           aria-label="Area chart: organic traffic growth rising from 8 percent in 2013 to 180 percent in 2022">
+        <div class="panel-title">10-Year Growth Trajectory</div>
+        <div class="panel-sub">Organic traffic % growth · 2013–2022 window</div>
+        <svg viewBox={`0 0 ${AW} ${AH}`} width="100%" role="presentation">
+          <defs>
+            <linearGradient id="cyg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color={P.cyan} stop-opacity="0.3" />
+              <stop offset="100%" stop-color={P.cyan} stop-opacity="0" />
+            </linearGradient>
+          </defs>
+          {[0, 60, 120, 180].map((v) => (
+            <>
+              <line x1="30" y1={gy(v)} x2={AW - 10} y2={gy(v)} stroke="rgba(59,130,246,0.07)" stroke-dasharray="4 4" />
+              <text x="26" y={gy(v) + 3} text-anchor="end" fill="#6b7fa8" font-size="9" font-family="JetBrains Mono, monospace">{v}%</text>
+            </>
+          ))}
+          <path d={areaPath(areaPts, ABASE)} fill="url(#cyg)" />
+          <path d={linePath(areaPts)} fill="none" stroke={P.cyan} stroke-width="2.5" />
+          {areaPts.map((p, i) => <circle cx={p.x} cy={p.y} r="3" fill={P.cyan} />)}
+          {GROWTH_DATA.map((d, i) => (
+            <text x={yearX(i)} y={ABASE + 14} text-anchor="middle" fill="#6b7fa8" font-size="9" font-family="JetBrains Mono, monospace">{d.year}</text>
+          ))}
+        </svg>
+      </div>
+
+      {/* Competency radar */}
+      <div class="glass-bright panel" style={`border:1px solid ${P.green}18`} data-reveal data-reveal-delay="220" role="img"
+           aria-label="Radar chart: proficiency scores in the eighties and nineties across AI and automation 92, growth and SEO 90, UX strategy 86, product 82, analytics 88 and leadership 84">
+        <div class="panel-title">Competency Radar</div>
+        <div class="panel-sub">Proficiency across core domains (0–100)</div>
+        <svg viewBox="0 0 300 220" width="100%" role="presentation">
+          {rings.map((r) => <polygon points={r.d} fill="none" stroke="rgba(59,130,246,0.12)" />)}
+          {radar.map((r) => <line x1={RX} y1={RY} x2={r.ex} y2={r.ey} stroke="rgba(59,130,246,0.12)" />)}
+          <polygon points={radarPath(SKILLS_RADAR.map((d) => d.value), RX, RY, RR)} fill={P.blue} fill-opacity="0.18" stroke={P.blue} stroke-width="2" />
+          {radar.map((r) => (
+            <>
+              <circle cx={RX + (r.ex - RX) * (r.value / 100)} cy={RY + (r.ey - RY) * (r.value / 100)} r="3" fill={P.blue} />
+              <text x={r.x} y={r.y} text-anchor={r.anchor} fill="#8898b8" font-size="9.5" font-family="JetBrains Mono, monospace">{r.skill}</text>
+            </>
+          ))}
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .head { text-align: center; margin-bottom: 56px; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--violet); letter-spacing: .2em; margin-bottom: 12px; }
+  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; color: #f0f4ff; }
+  .panel { border-radius: 20px; padding: 28px; }
+  .panel-title { font-family: 'Sora', sans-serif; font-weight: 700; font-size: .9rem; color: #d8e4ff; }
+  .panel-sub { font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: #6b7fa8; margin: 3px 0 16px; }
+  .funnel { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .funnel-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+  .funnel-row span { font-family: 'JetBrains Mono', monospace; font-size: .7rem; color: #8898b8; }
+  .funnel-val { font-family: 'Sora', sans-serif; font-weight: 700; font-size: .8rem; }
+  .funnel-bar { height: 8px; border-radius: 999px; background: rgba(255, 255, 255, .04); overflow: hidden; }
+  .funnel-fill { height: 100%; border-radius: 999px; transition: width 1.2s ease; }
+  .conv { margin-top: 20px; padding: 10px 14px; border-radius: 10px; background: rgba(16, 185, 129, .07); border: 1px solid rgba(16, 185, 129, .2); }
+  .conv-label { font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: #10b981; }
+  .conv-val { font-family: 'Sora', sans-serif; font-weight: 800; font-size: .9rem; color: #10b981; }
+  .conv-note { font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: #6b7fa8; }
+</style>

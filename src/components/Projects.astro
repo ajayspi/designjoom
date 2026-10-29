@@ -1,0 +1,157 @@
+---
+import Icon from "./Icon.astro";
+import { PROJECTS } from "../data";
+import type { ImageMetadata } from "astro";
+
+// Real captures for the six live sites, the repo's own workflow artwork for
+// Clipped AI Studio, and a local capture of the running Pro Studio X UI for the
+// two repo-only projects. No stock imagery and no generic GitHub OG placeholders
+// standing in for real work.
+import ir4u from "../imports/projects/ir4u.webp";
+import vigilare from "../imports/projects/vigilare.webp";
+import recytronics from "../imports/projects/recytronics.webp";
+import erevival from "../imports/projects/erevival.webp";
+import preciousJewels from "../imports/projects/precious-jewels.webp";
+import auraMakeover from "../imports/projects/aura-makeover.webp";
+import proStudioX from "../imports/projects/pro-studio-x.webp";
+import talenttrek from "../imports/projects/talenttrek.webp";
+import clipped from "../imports/projects/clipped-ai-studio.webp";
+
+const SHOTS: Record<string, ImageMetadata> = {
+  ir4u, vigilare, recytronics, erevival,
+  "precious-jewels": preciousJewels,
+  "aura-makeover": auraMakeover,
+  "pro-studio-x": proStudioX,
+  talenttrek, "clipped-ai-studio": clipped,
+};
+
+// Build-time guard: a missing or misspelled slug fails the build instead of silently
+// shipping an empty card slot.
+const missing = PROJECTS.filter((p) => !SHOTS[p.image]).map((p) => `${p.name} -> "${p.image}"`);
+if (missing.length) throw new Error(`Projects.astro: no screenshot for ${missing.join(", ")}`);
+
+// ponytail: hover accent is pure CSS (:hover) — the old React version kept per-card
+// `active` state in the DOM purely to drive these two opacity/colour values.
+---
+
+<section id="projects" style="padding:100px 0">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="head" data-reveal>
+      <div class="eyebrow">PROJECTS</div>
+      <h2>Work That<br /><span class="text-shimmer">Delivers Results</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {PROJECTS.map((p) => {
+        const shot = SHOTS[p.image];
+        return (
+          <article class="glass card" style={`border:1px solid ${p.color}1a;--accent:${p.color}`}>
+            <span class="card-line" aria-hidden="true"></span>
+            <span class="card-orb" aria-hidden="true"></span>
+
+            {/* The whole thumbnail opens the project. tabindex -1 + aria-hidden because the
+                external-link button below is the card's real, labelled link — a second
+                identically-named tab stop would just be noise. */}
+            <a class="shot" href={p.link} target="_blank" rel="noopener noreferrer"
+               tabindex="-1" aria-hidden="true">
+              <img src={shot.src} alt={p.imageAlt} width={shot.width} height={shot.height}
+                   loading="lazy" decoding="async" />
+              <span class="shot-badge">{p.link.includes("github.com") ? "GitHub repo" : "Live site"}</span>
+            </a>
+
+            <div class="card-top">
+              <div>
+                <h3 style={`color:${p.color}`}>{p.name}</h3>
+                <div class="subtitle">{p.subtitle}</div>
+              </div>
+              <a href={p.link} target="_blank" rel="noopener noreferrer"
+                 aria-label={`Open ${p.name} in a new tab`} class="ext">
+                <Icon name="external-link" size={15} />
+              </a>
+            </div>
+
+            <p class="desc">{p.description}</p>
+
+            <div class="metrics">
+              {p.metrics.map((m) => <span style={`background:${p.color}0d;border:1px solid ${p.color}22;color:${p.color}`}>{m}</span>)}
+            </div>
+
+            <div class="flex flex-wrap gap-1.5">
+              {p.tags.map((t) => <span class="tag" style="font-size:.67rem">{t}</span>)}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .head { text-align: center; margin-bottom: 64px; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--blue); letter-spacing: .2em; margin-bottom: 12px; }
+  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #f0f4ff; }
+
+  .card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    padding: 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px color-mix(in srgb, var(--accent) 20%, transparent); border-color: color-mix(in srgb, var(--accent) 45%, transparent) !important; }
+
+  .card-line {
+    position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 2;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0; transition: opacity .3s;
+  }
+  .card-orb {
+    position: absolute; top: 180px; right: -60px; width: 160px; height: 160px;
+    border-radius: 50%; background: var(--accent);
+    opacity: .02; filter: blur(40px); transition: opacity .4s;
+  }
+  .card:hover .card-line { opacity: 1; }
+  .card:hover .card-orb { opacity: .07; }
+
+  .shot {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: rgba(255, 255, 255, .02);
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+  }
+  .shot img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .45s ease;
+  }
+  .card:hover .shot img { transform: scale(1.05); }
+  .shot-badge {
+    position: absolute; left: 10px; bottom: 10px;
+    padding: 3px 8px; border-radius: 999px;
+    background: rgba(5, 8, 16, .78);
+    border: 1px solid rgba(255, 255, 255, .12);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .58rem; letter-spacing: .12em; text-transform: uppercase;
+    color: #a8b8d8;
+  }
+
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 20px 24px 0; }
+  h3 { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.25rem; margin: 0; }
+  .subtitle { font-size: .73rem; color: #6b7fa8; margin-top: 2px; }
+  .ext { color: #6b7fa8; transition: color .2s; flex-shrink: 0; }
+  .ext:hover { color: var(--accent); }
+
+  .desc { font-size: .82rem; color: #8898b8; line-height: 1.65; margin: 12px 24px 14px; }
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 24px 16px; }
+  .metrics span {
+    padding: 5px 9px; border-radius: 7px;
+    font-size: .7rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .card > .flex { padding: 0 24px; }
+</style>

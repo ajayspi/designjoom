@@ -1,0 +1,87 @@
+---
+import Icon from "./Icon.astro";
+import { P, GROWTH_DATA } from "../data";
+import { points, linePath, areaPath } from "../lib/chart";
+
+const W = 200, H = 44;
+const sparkUsers = points(GROWTH_DATA.map((d) => d.users), W, H);
+const sparkGrowth = points(GROWTH_DATA.map((d) => d.growth), W, H);
+
+const CARDS = [
+  { value: 14, suffix: "+", label: "Years Experience", sub: "Google · Startups · Healthcare", icon: "star", color: P.blue, spark: sparkUsers, kind: "area" },
+  { value: 180, suffix: "%+", label: "Organic Traffic Growth", sub: "SEO / SEM · 10+ years", icon: "trending-up", color: P.green, spark: sparkGrowth, kind: "line" },
+  { value: 60900, suffix: "+", label: "Video Views", sub: "Cross-platform", icon: "chart-column-big", color: P.violet },
+  { value: 2534, suffix: "", label: "New Users", sub: "IR4U digital ecosystem", icon: "users", color: P.cyan },
+  { value: 433, suffix: "", label: "WhatsApp Conversions", sub: "Instagram → WhatsApp", icon: "zap", color: P.amber },
+  { value: 20, suffix: "+", label: "Global Clients", sub: "India · Germany · USA · UAE", icon: "globe", color: P.pink },
+];
+---
+
+<section id="metrics" style="padding:56px 0 60px;background:radial-gradient(ellipse 80% 50% at 50% 100%,rgba(124,58,237,0.05) 0%,transparent 70%)">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="head" data-reveal>
+      <div>
+        <div class="eyebrow">IMPACT METRICS</div>
+        <h2>Numbers That <span class="text-shimmer">Tell the Story</span></h2>
+      </div>
+      <div class="head-note">14+ YRS · 9 PROJECTS · 5 COUNTRIES</div>
+    </div>
+
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:12px">
+      {CARDS.map((m, i) => (
+        <div class="glass card" style={`border:1px solid ${m.color}1a;border-radius:14px;padding:16px 18px;--accent:${m.color}`} data-reveal data-reveal-delay={i * 55}>
+          <span class="orb" aria-hidden="true"></span>
+          <div class="card-top">
+            <span class="icon-box" style={`background:${m.color}14;border:1px solid ${m.color}22`}>
+              <Icon name={m.icon} size={13} />
+            </span>
+            <div>
+              <div class="label">{m.label}</div>
+              <div class="sub">{m.sub}</div>
+            </div>
+          </div>
+
+          <div class="num" style={`color:${m.color}`}>
+            <span data-count={m.value} data-suffix={m.suffix}>{m.value}{m.suffix}</span>
+          </div>
+
+          {m.spark && (
+            <div class="spark" role="img" aria-label={`${m.label} trend, 2013 to 2022`}>
+              <svg viewBox={`0 0 ${W} ${H}`} width="100%" height={H} preserveAspectRatio="none">
+                {m.kind === "area" && (
+                  <>
+                    <defs>
+                      <linearGradient id={`sg-${i}`} x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color={m.color} stop-opacity="0.3" />
+                        <stop offset="100%" stop-color={m.color} stop-opacity="0" />
+                      </linearGradient>
+                    </defs>
+                    <path d={areaPath(m.spark, H)} fill={`url(#sg-${i})`} />
+                  </>
+                )}
+                <path d={linePath(m.spark)} fill="none" stroke={m.color} stroke-width="1.5" vector-effect="non-scaling-stroke" />
+              </svg>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--blue); letter-spacing: .2em; margin-bottom: 4px; }
+  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 800; color: #f0f4ff; line-height: 1.1; }
+  .head-note { font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: #4a5a78; letter-spacing: .1em; }
+
+  .card { position: relative; overflow: hidden; min-width: 0; transition: transform .3s ease, box-shadow .3s ease; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(59, 130, 246, .18); }
+  .orb { position: absolute; top: -16px; right: -16px; width: 80px; height: 80px; border-radius: 50%; background: var(--accent); opacity: .06; filter: blur(24px); }
+  .card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .icon-box { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--accent); }
+  .label { font-family: 'Sora', sans-serif; font-weight: 600; font-size: .72rem; color: #c8d8f0; line-height: 1.2; }
+  .sub { font-family: 'JetBrains Mono', monospace; font-size: .57rem; color: #4a5a78; margin-top: 1px; }
+  .num { font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1; }
+  .spark { margin-top: 10px; height: 44px; min-height: 44px; }
+</style>

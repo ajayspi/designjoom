@@ -1,0 +1,45 @@
+---
+import { ANSWER_INTRO, QUICK_FACTS } from "../seo";
+---
+
+{/* Answer-shaped content: the definitional sentence and the six facts an engine can
+    lift without the surrounding page. Visible, not hidden — content served only to
+    crawlers is cloaking. */}
+<section id="quick-facts" style="padding:72px 0 8px">
+  <div class="max-w-4xl mx-auto px-6" data-reveal>
+    <p style="color:#8898b8;line-height:1.8;font-size:1rem;text-align:center;margin-bottom:40px">
+      {ANSWER_INTRO}
+    </p>
+    <dl class="facts">
+      {QUICK_FACTS.map(({ label, value }) => (
+        <div class="fact">
+          <dt>{label}</dt>
+          <dd>{value}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin: 0;
+  }
+  .fact {
+    background: rgba(15, 25, 55, .8);
+    border: 1px solid rgba(59, 130, 246, .25);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .fact dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .62rem;
+    color: #6b9fef;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .fact dd { margin: 6px 0 0; font-size: .85rem; color: #d8e4ff; line-height: 1.5; }
+</style>

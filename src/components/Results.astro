@@ -1,0 +1,58 @@
+---
+import { RESULTS } from "../seo";
+---
+
+{/* The results ledger. A real <table> because mixing views/users/clicks in one chart
+    axis was unreadable — a table with named columns is the fix. Every metric is
+    quoted from a verified experience bullet; units are named in the column headers. */}
+<section id="results" style="padding:100px 0">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="head" data-reveal>
+      <div class="eyebrow">RESULTS</div>
+      <h2>Verified <span class="text-shimmer">Outcomes</span></h2>
+      <p class="note">Every figure below is a reported client result, not an estimate.</p>
+    </div>
+
+    <div class="glass-bright wrap" data-reveal>
+      <table>
+        <caption>Reported results by client and period</caption>
+        <thead>
+          <tr>
+            <th scope="col">Result (unit stated in the value)</th>
+            <th scope="col">Client / engagement</th>
+            <th scope="col">Period</th>
+          </tr>
+        </thead>
+        <tbody>
+          {RESULTS.map((r) => (
+            <tr>
+              <td class="metric">{r.metric}</td>
+              <td>{r.client}</td>
+              <td class="period">{r.period}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .head { text-align: center; margin-bottom: 48px; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--blue); letter-spacing: .2em; margin-bottom: 12px; }
+  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #f0f4ff; }
+  .note { margin-top: 12px; color: #6b7fa8; font-size: .9rem; }
+  .wrap { border-radius: 20px; padding: 28px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; min-width: 520px; }
+  caption { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: #6b7fa8; padding-bottom: 12px; }
+  th {
+    text-align: left; font-family: 'JetBrains Mono', monospace;
+    font-size: .65rem; color: #6b9fef; letter-spacing: .12em;
+    text-transform: uppercase; font-weight: 500;
+    padding: 8px 12px 8px 0; border-bottom: 1px solid rgba(59, 130, 246, .2);
+  }
+  td { padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(255, 255, 255, .05); font-size: .85rem; color: #8898b8; }
+  tr:last-child td { border-bottom: none; }
+  .metric { color: #d8e4ff; font-weight: 600; }
+  .period { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: #6b7fa8; white-space: nowrap; }
+</style>

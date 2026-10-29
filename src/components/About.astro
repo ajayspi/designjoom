@@ -1,0 +1,86 @@
+---
+import Icon from "./Icon.astro";
+import { P } from "../data";
+import { COPY } from "../seo";
+
+const framework = [
+  { step: "THINK", color: P.blue, icon: "brain", desc: "Research, strategy, user insights" },
+  { step: "DESIGN", color: P.violet, icon: "layers", desc: "UX, IA, wireframes, systems" },
+  { step: "BUILD", color: P.cyan, icon: "cpu", desc: "AI workflows, automation, tech" },
+  { step: "GROW", color: P.green, icon: "trending-up", desc: "SEO, acquisition, performance" },
+];
+const countries = ["India", "Germany", "Qatar", "Singapore", "USA", "Australia"];
+---
+
+<section id="about" style="padding:100px 0">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+    <div data-reveal data-reveal-x="-48">
+      <div class="eyebrow">ABOUT</div>
+      <h2>AI + Growth + UX<br /><span class="text-shimmer">+ Digital Transformation</span></h2>
+      <p class="lede">{COPY.aboutParagraph}</p>
+      <div class="flex flex-wrap gap-2 mt-6">
+        {countries.map((c) => <span class="tag">{c}</span>)}
+      </div>
+      <div class="positioning">
+        <div class="positioning-label">PROFESSIONAL POSITIONING</div>
+        <p>{COPY.positioning}</p>
+      </div>
+    </div>
+
+    <div data-reveal data-reveal-x="48">
+      <div class="grid grid-cols-2 gap-3">
+        {framework.map(({ step, color, icon, desc }) => (
+          <div class={`glass-bright card-hover rounded-2xl p-5`} style={`border:1px solid ${color}22`}>
+            <span style={`color:${color};display:inline-flex`}><Icon name={icon} size={22} /></span>
+            <div class="step" style={`color:${color}`}>{step}</div>
+            <div class="step-desc">{desc}</div>
+          </div>
+        ))}
+      </div>
+      <div class="glass-bright rounded-2xl p-5 flex items-center gap-4 mt-4" style={`border:1px solid ${P.green}20`}>
+        <span class="badge-round" style={`background:rgba(16,185,129,0.1)`}>
+          <Icon name="award" size={18} class="" />
+        </span>
+        <div>
+          <div class="cxa" style={`color:${P.green}`}>HFI Certified UX Analyst (CXA)</div>
+          <div class="cxa-org">Human Factors International · Jan 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem; color: var(--blue);
+    letter-spacing: .2em; margin-bottom: 12px;
+  }
+  h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800; color: #f0f4ff; line-height: 1.1;
+  }
+  .lede { margin-top: 20px; color: #6b7fa8; line-height: 1.8; font-size: .95rem; }
+  .positioning {
+    margin-top: 32px; padding: 16px;
+    border-radius: 12px;
+    background: rgba(59, 130, 246, .06);
+    border: 1px solid rgba(59, 130, 246, .15);
+  }
+  .positioning-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .68rem; color: var(--blue);
+    letter-spacing: .15em; margin-bottom: 8px;
+  }
+  .positioning p { font-size: .85rem; color: #a8b8d8; line-height: 1.7; }
+  .step { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.1rem; margin-top: 10px; }
+  .step-desc { font-size: .8rem; color: #6b7fa8; margin-top: 4px; }
+  .badge-round {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .cxa { font-family: 'Sora', sans-serif; font-weight: 700; font-size: .9rem; }
+  .cxa-org { font-size: .78rem; color: #6b7fa8; }
+</style>

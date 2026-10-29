@@ -1,0 +1,120 @@
+---
+import { IDENTITY, META, FAQ, ANSWER_INTRO } from "../seo";
+import { SKILLS_AI, SKILLS_GROWTH, SKILLS_UX, SKILLS_TOOLS } from "../data";
+import "../index.css";
+
+const { personId, websiteId } = { personId: `${META.canonical}#person`, websiteId: `${META.canonical}#website` };
+
+const person = {
+  "@type": "Person",
+  "@id": personId,
+  name: IDENTITY.name,
+  alternateName: [...IDENTITY.alternateNames],
+  jobTitle: IDENTITY.jobTitle,
+  description: ANSWER_INTRO,
+  url: META.canonical,
+  image: IDENTITY.image,
+  email: `mailto:${IDENTITY.email}`,
+  telephone: IDENTITY.phone,
+  knowsAbout: [...SKILLS_AI, ...SKILLS_GROWTH, ...SKILLS_UX, ...SKILLS_TOOLS],
+  worksFor: { "@type": "Organization", name: IDENTITY.employer },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: IDENTITY.location.city,
+    addressRegion: IDENTITY.location.region,
+    addressCountry: IDENTITY.location.country,
+  },
+  sameAs: [...IDENTITY.sameAs],
+};
+
+const jsonLd = [
+  person,
+  { "@type": "WebSite", "@id": websiteId, url: META.canonical, name: META.title, inLanguage: "en", publisher: { "@id": personId } },
+  { "@type": "ProfilePage", "@id": `${META.canonical}#profile`, url: META.canonical, name: META.title, mainEntity: { "@id": personId } },
+  {
+    "@type": "FAQPage",
+    "@id": `${META.canonical}#faq`,
+    mainEntity: FAQ.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  },
+];
+
+// Omitted entirely when unset, so no empty verification tag ships.
+const gsv = import.meta.env.GOOGLE_SITE_VERIFICATION ?? "";
+const bsv = import.meta.env.BING_SITE_VERIFICATION ?? "";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{META.title}</title>
+    <meta name="description" content={META.description} />
+    <link rel="canonical" href={META.canonical} />
+    <meta name="theme-color" content={META.themeColor} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={IDENTITY.name} />
+    <meta property="og:title" content={META.title} />
+    <meta property="og:description" content={META.description} />
+    <meta property="og:url" content={META.canonical} />
+    <meta property="og:image" content={META.ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={META.title} />
+    <meta name="twitter:description" content={META.description} />
+    <meta name="twitter:image" content={META.ogImage} />
+
+    {gsv && <meta name="google-site-verification" content={gsv} />}
+    {bsv && <meta name="msvalidate.01" content={bsv} />}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    {jsonLd.map((node) => <script type="application/ld+json" is:inline set:html={JSON.stringify(node)} />)}
+  </head>
+  <body>
+    <a class="figma-bypass-link" href="#main">Skip to content</a>
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" aria-hidden="true"></div>
+    <div id="main" style="background: var(--background); min-height: 100vh; overflow-x: hidden;">
+      <slot />
+    </div>
+    <script>
+      // One listener for every decorative script on the page.
+      import "../scripts/reveal";
+      import "../scripts/nav";
+      import "../scripts/cursor";
+      import "../scripts/canvas";
+      import "../scripts/typewriter";
+      import "../scripts/counters";
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  .figma-bypass-link {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 2147483647;
+    transform: translateY(-150%);
+    border-radius: 6px;
+    background: #111827;
+    color: #fff;
+    padding: 8px 12px;
+    font: 600 14px/1.2 system-ui, sans-serif;
+    text-decoration: none;
+  }
+  .figma-bypass-link:focus {
+    transform: translateY(0);
+  }
+</style>

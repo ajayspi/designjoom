@@ -1,0 +1,66 @@
+---
+import Icon from "./Icon.astro";
+import { P, SKILLS_AI, SKILLS_GROWTH, SKILLS_UX, SKILLS_TOOLS } from "../data";
+
+const groups = [
+  { title: "Artificial Intelligence", items: SKILLS_AI, color: P.violet },
+  { title: "Growth & Marketing", items: SKILLS_GROWTH, color: P.blue },
+  { title: "UX & Product", items: SKILLS_UX, color: P.cyan },
+  { title: "Tools & Platforms", items: SKILLS_TOOLS, color: P.green },
+];
+const CERTS = [
+  { title: "HFI Certified User Experience Analyst (CXA)", org: "Human Factors International · Jan 2026", color: P.amber },
+  { title: "Generative AI Mastermind", org: "Outskill · 2025", color: P.violet },
+  { title: "Digital Marketing", org: "Google Digital Garage · 2023", color: P.green },
+];
+---
+
+<section id="skills" style="padding:100px 0;background:rgba(5,8,20,0.4)">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="head" data-reveal>
+      <div class="eyebrow">SKILLS</div>
+      <h2>The Full <span class="text-shimmer">Stack</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {groups.map((g, i) => (
+        <div class="glass-bright rounded-2xl p-6" style={`border:1px solid ${g.color}18`} data-reveal data-reveal-delay={i * 80}>
+          <div class="group-head">
+            <span class="group-dot" style={`background:${g.color};box-shadow:0 0 8px ${g.color}`}></span>
+            <h3 style={`color:${g.color}`}>{g.title}</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {g.items.map((s) => <span class="tag">{s}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10" data-reveal>
+      <div class="certs-label">CERTIFICATIONS</div>
+      <div class="flex flex-wrap gap-4">
+        {CERTS.map(({ title, org, color }) => (
+          <div class="glass-bright rounded-xl p-4 flex items-center gap-3" style={`border:1px solid ${color}22`}>
+            <span style={`color:${color};display:inline-flex;flex-shrink:0`}><Icon name="award" size={16} /></span>
+            <div>
+              <div class="cert-title">{title}</div>
+              <div class="cert-org">{org}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .head { text-align: center; margin-bottom: 64px; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--blue); letter-spacing: .2em; margin-bottom: 12px; }
+  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #f0f4ff; }
+  .group-head { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+  .group-dot { width: 8px; height: 8px; border-radius: 50%; }
+  h3 { font-family: 'Sora', sans-serif; font-weight: 700; font-size: .95rem; margin: 0; }
+  .certs-label { font-family: 'JetBrains Mono', monospace; font-size: .68rem; color: var(--blue); letter-spacing: .2em; margin-bottom: 12px; }
+  .cert-title { font-weight: 600; font-size: .82rem; color: #e8eeff; }
+  .cert-org { font-size: .7rem; color: #6b7fa8; font-family: 'JetBrains Mono', monospace; }
+</style>

@@ -4,140 +4,61 @@ import { P, ROLES } from "../data";
 import { IDENTITY } from "../seo";
 
 const CERTS = [
-  { label: "HFI Certified User Experience Analyst (CXA)", org: "Human Factors International", color: P.amber, dot: P.amber },
   { label: "Generative AI Mastermind", org: "Outskill", color: P.violet, dot: P.violet },
   { label: "Digital Marketing", org: "Google Digital Garage", color: P.green, dot: P.green },
 ];
-
-const socials = [
-  { icon: "link", href: "https://www.linkedin.com/in/aigrowthandautomationleader/", label: "LinkedIn" },
-  { icon: "git-fork", href: "https://github.com/ajayspi", label: "GitHub" },
-  { icon: "globe", href: "https://designjoom.com", label: "Website" },
-];
-
-const PROCESS = [
-  { step: "Concept", desc: "One core. First we decide the one thing people will remember." },
-  { step: "Prototype", desc: "An idea that works. Not with words or pictures, but a draft that actually runs." },
-  { step: "Test", desc: "A finish that has been tested. We try it on the devices and in the space it's built for." },
-];
 ---
 
-<section id="hero" class="hero editorial-hero">
+<section id="hero" class="hero editorial-hero" style="background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,130,246,0.08) 0%, transparent 70%)">
   <canvas id="neural-canvas" aria-hidden="true"></canvas>
-
   <div class="orbits" aria-hidden="true">
     <div class="orbit-ring" style="width:620px;height:620px;border-color:rgba(59,130,246,0.05);animation-duration:44s"></div>
     <div class="orbit-ring" style="width:400px;height:400px;border-color:rgba(124,58,237,0.07);animation-duration:28s;animation-direction:reverse"></div>
     <div class="orbit-ring" style="width:230px;height:230px;border-color:rgba(6,182,212,0.09);animation-duration:16s"></div>
   </div>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-6 py-24 md:py-32 grid md:grid-cols-2 gap-16 items-center justify-center pt-24 pb-12">
-
-    <div class="text-center md:w-1/2 order-2 md:order-1">
-      <span class="editorial-tag mb-8 inline-block">AI GROWTH & DIGITAL TRANSFORMATION LEADER</span>
-
-      <h1 class="editorial-headline text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-none mb-6">
-        <span style="color:#f0f4ff">{IDENTITY.name}</span>
-        <br class="hidden md:block" />
-        <span class="text-shimmer">We build interactive AI experiences.</span>
-        <br class="hidden md:block" />
-        Experiences, engineered.
-      </h1>
-
-      <p class="editorial-sub text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed mb-12">
-        Based in Hyderabad, India. Working with clients across India, Germany, the US, and Australia.
-      </p>
-
-      <div class="flex flex-wrap gap-4 mb-12 justify-center">
-        <a href="#services" class="btn-primary px-6 py-3 rounded-full text-sm font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25">See Our Work</a>
-        <a href="#projects" class="btn-outline px-6 py-3 rounded-full text-sm font-medium transition-all border-2 border-white/10 hover:border-blue-500/30 hover:text-white">View Projects</a>
-      </div>
-
-      <div class="flex items-center gap-6 text-sm text-muted-foreground">
-        <span>14+ years</span><span>/</span><span>Digital strategy</span><span>/</span><span>AI product development</span>
-      </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-6 py-24 md:py-32 text-center pt-24 pb-12">
+    <span class="editorial-tag mb-8 inline-block">AI GROWTH & DIGITAL TRANSFORMATION</span>
+    <h1 class="editorial-headline text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-none mb-6 text-center">
+      Designjoom.<br class="hidden md:block" /> <span style="color:#6b9fef">We build interactive AI experiences.</span>
+    </h1>
+    <p class="editorial-sub text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
+      Agency services: AI product development, UX strategy, growth marketing, AI video generation, website architecture, and brand identity. Based in Hyderabad. Working globally.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center mb-12">
+      <a href="#projects" class="btn-primary px-6 py-3 rounded-full text-sm font-medium">See Our Work</a>
+      <a href="#contact" class="btn-outline px-6 py-3 rounded-full text-sm font-medium">Start a Project</a>
     </div>
-
-    <div class="order-1 md:order-2 flex justify-center">
-      <div class="photo-wrap">
-        <div class="photo-glow"></div>
-        <div class="photo">
-          <img src="/ajay-kiran.png" alt={`${IDENTITY.name}, ${IDENTITY.descriptor}`} width={280} height={320} fetchpriority="high" />
-          <div class="photo-caption">
-            <div class="photo-name">{IDENTITY.name}</div>
-            <div class="photo-role">AI GROWTH LEADER</div>
-          </div>
-        </div>
-        <div class="glass chip chip-l">
-          <div class="chip-num" style="color:#3b82f6">14+</div><div>Yrs Exp</div>
-        </div>
-        <div class="glass chip chip-r">
-          <div class="chip-num" style="color:#7c3aed">AI</div><div>Architect</div>
-        </div>
-      </div>
-      <div class="cert-list absolute -top-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        {CERTS.map(({ label, org, color, dot }) => (
-          <div class="glass cert" style={`border:1px solid ${color}22`}>
-            <span class="cert-dot" style={`background:${dot};box-shadow:0 0 6px ${dot}`}></span>
-            <div>
-              <div class="cert-label text-xs font-medium">{label}</div>
-              <div class="cert-org text-[10px] opacity-70">{org}</div>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div class="flex items-center gap-6 text-sm text-muted-foreground justify-center">
+      <span>14+ years</span><span>/</span><span>9 verified projects</span><span>/</span><span>4 countries</span><span>/</span><span>13 real images</span>
     </div>
   </div>
-
+  
   <!-- Process Concept → Prototype → Test -->
   <div class="mt-16 md:mt-24 text-center">
     <div class="flex justify-center gap-6 items-center flex-wrap">
-      {PROCESS.map((p, i) => (
-        <div key={p.step} class="text-center relative flex items-center gap-6">
-          {i > 0 && <div class="process-line flex-1 h-px bg-gradient-to-r from-blue-600/50 to-transparent" style="min-width:2rem"></div>}
-          <div class="process-step text-xs font-medium text-blue-600 mb-1">{p.step}</div>
-          <div class="process-desc text-sm text-muted-foreground max-w-[140px]">{p.desc}</div>
-        </div>
-      ))}
+      <div class="text-center"><div class="process-step">Concept</div><div class="process-desc">One core. First we decide the one thing people will remember.</div></div>
+      <div class="hidden md:block w-16 h-px bg-gradient-to-r from-blue-600/50 to-transparent"></div>
+      <div class="text-center"><div class="process-step">Prototype</div><div class="process-desc">A draft that actually runs, not just a mock.</div></div>
+      <div class="hidden md:block w-16 h-px bg-gradient-to-r from-blue-600/50 to-transparent"></div>
+      <div class="text-center"><div class="process-step">Test</div><div class="process-desc">Finished only after testing in real devices and spaces.</div></div>
     </div>
     <p class="mt-8 text-sm text-muted-foreground">We check every step for ourselves, and finish one experience at a time.</p>
-  </div>
-
-  <div class="scroll-cue absolute bottom-8 left-1/2 -translate-x-8 flex flex-col items-center gap-2 animate-float" aria-hidden="true">
-    <span style="font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.15em">SCROLL</span>
-    <Icon name="chevron-down" size={14} />
   </div>
 </section>
 
 <style>
-  .editorial-hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .orbits { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
-  .orbit-ring { position: absolute; border-radius: 50%; border: 1px solid; animation: spin-slow linear infinite; }
-  .editorial-tag { display: inline-block; padding: 6px 16px; background: rgba(59, 130, 246, .1); border: 1px solid rgba(59, 130, 246, .2); border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-size: .7rem; color: #6b9fef; letter-spacing: .1em; margin-bottom: 32px; }
-  .editorial-headline { font-family: 'Sora', sans-serif; font-weight: 900; font-size: clamp(3rem, 8vw, 6rem); line-height: 1.1; letter-spacing: -.04em; color: #f8fafc; margin-bottom: 1.5rem; }
-  .editorial-sub { font-size: clamp(1rem, 2vw, 1.25rem); color: #cbd5e1; margin-bottom: 2rem; }
+  .editorial-hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding-top: 100px; }
+  .editorial-tag { display: inline-block; padding: 6px 16px; background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2); border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-size: .7rem; color: #6b9fef; letter-spacing: .1em; }
+  .editorial-headline { font-family: 'Sora', sans-serif; font-weight: 900; font-size: clamp(3rem, 8vw, 6rem); line-height: 1.05; letter-spacing: -.04em; color: #f8fafc; text-align: center; }
+  .editorial-sub { font-size: clamp(1rem, 2vw, 1.25rem); color: #cbd5e1; max-width: 640px; }
   .btn-primary { background: linear-gradient(135deg, #3b82f6, #7c3aed); color: #fff; padding: 12px 24px; border-radius: 999px; font-size: .875rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .3s ease; }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(59, 130, 246, .4); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(59,130,246,.4); }
   .btn-outline { color: #f8fafc; padding: 12px 24px; border-radius: 999px; font-size: .875rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border: 2px solid rgba(255,255,255,.1); transition: all .3s ease; }
   .btn-outline:hover { border-color: rgba(59,130,246,.5); color: #f8fafc; }
-  .process-step { font-size: 0.75rem; font-weight: 500; color: #3b82f6; margin-bottom: 0.25rem; }
-  .process-desc { font-size: 0.875rem; color: var(--muted-foreground); max-width: 150px; }
-  .process-line { position: absolute; width: 40%; height: 2px; background: linear-gradient(to right, rgba(59,130,246,0.5) 0%, transparent 100%); }
-  .photo-wrap { --pw: clamp(200px, 25vw, 340px); animation: float 6s ease-in-out infinite; position: relative; width: var(--pw); }
-  .photo-glow { position: absolute; inset: -30px; background: radial-gradient(circle, rgba(59, 130, 246, .18) 0%, rgba(124, 58, 237, .1) 50%, transparent 70%); filter: blur(36px); }
-  .photo { position: relative; width: 100%; aspect-ratio: 13 / 16; border-radius: clamp(20px, 2.5vw, 28px); overflow: hidden; border: 1.5px solid rgba(59, 130, 246, .35); box-shadow: 0 0 64px rgba(59, 130, 246, .22), 0 0 120px rgba(124, 58, 237, .12); }
-  .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
-  .photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: clamp(24px, 3vw, 32px) 16px 16px; background: linear-gradient(to top, rgba(5, 8, 16, .88) 60%, transparent); }
-  .photo-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: clamp(.85rem, 1.2vw, 1rem); color: #f8fafc; }
-  .photo-role { font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: #6b9fef; letter-spacing: .1em; margin-top: 2px; }
-  .chip { position: absolute; padding: 8px 12px; border-radius: 12px; font-size: .7rem; font-family: 'JetBrains Mono', monospace; max-width: 10rem; }
-  .chip-l { left: calc(-1 * clamp(8px, 2.5vw, 64px)); top: 22%; border: 1px solid rgba(59, 130, 246, .25); color: #6b9fef; }
-  .chip-r { right: calc(-1 * clamp(8px, 2vw, 56px)); top: 35%; border: 1px solid rgba(124, 58, 237, .25); color: #a78bfa; }
-  .chip-num { font-weight: 800; font-size: 1.1rem; }
-  .cert-list { display: flex; flex-direction: column; gap: 6px; width: var(--pw); margin-inline: auto; }
-  .cert { border-radius: 12px; padding: 8px 12px; display: flex; align-items: center; gap: 6px; }
-  .cert-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-  .cert-label { font-family: 'Sora', sans-serif; font-weight: 600; font-size: .65rem; color: #d8e4ff; line-height: 1.35; }
-  .cert-org { font-family: 'JetBrains Mono', monospace; font-size: .55rem; color: #4a5a78; margin-top: 2px; }
-  .scroll-cue { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 2px; color: #6b7fa8; animation: float 2s ease-in-out infinite; }
+  .orbits { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+  .orbit-ring { position: absolute; border-radius: 50%; border: 1px solid; animation: spin-slow linear infinite; }
+  .process-step { font-family: 'Sora', sans-serif; font-weight: 700; font-size: .75rem; color: #3b82f6; text-transform: uppercase; letter-spacing: .08em; }
+  .process-desc { font-size: .75rem; color: #6b7fa8; max-width: 140px; }
+  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 </style>

@@ -155,9 +155,9 @@ export const PROJECTS: Project[] = [
   {
     name: "Pro Studio X",
     subtitle: "AI Content & Video Automation Platform",
-    description: "Founder & Product Designer of an AI content engine turning creative briefs into full video production pipelines. Brief → Niche → Script → Storyboard → Video → Export.",
-    metrics: ["Multi-step AI wizard", "Script generation", "Storyboard automation", "Video pipeline"],
-    tags: ["AI Product", "LLM Workflows", "Automation", "UX Architecture"],
+    description: "Founder & Product Designer of an AI content engine turning creative briefs into full video production pipelines. Brief → Niche → Script → Storyboard → Video → Export. Rebuilt as FastAPI + Next.js 14 with WebSocket live progress, zero-key mode (Pollinations + gTTS), and Oracle Cloud systemd deployment.",
+    metrics: ["FastAPI + Next.js 14", "WebSocket live progress", "Zero-key mode", "Oracle Cloud deploy"],
+    tags: ["AI Product", "LLM Workflows", "Automation", "UX Architecture", "FastAPI", "Next.js"],
     color: P.violet,
     link: "https://github.com/ajayspi/ProstudioX-v1",
     image: "pro-studio-x",
@@ -232,13 +232,13 @@ export const PROJECTS: Project[] = [
   {
     name: "Clipped AI Studio",
     subtitle: "Open-Source AI Video Engine",
-    description: "Open-source AI video engine (TypeScript) — an active build turning scripts into produced video with an automated pipeline.",
-    metrics: ["Open-source", "TypeScript", "Video pipeline", "Active build"],
-    tags: ["AI Video", "Open Source", "Automation"],
+    description: "Autonomous Next-Gen Video Generation Engine — multi-track NLE, distributed render pipeline, and production platform built on Next.js 16.3.3, FFmpeg, WebCodecs, and Supabase. 80 commits, 10 workflows, 248 E2E tests, MIT licensed. Client-side WebCodecs MP4 export, OTIO/FCPXML NLE bridge, AI Foley soundstage, viral kinetic typography presets, DAG pipeline orchestrator, OmniRoute sovereign gateway across 45+ providers.",
+    metrics: ["Next.js 16", "WebCodecs export", "OTIO + FCPXML bridge", "248 E2E tests", "OmniRoute gateway", "80 commits"],
+    tags: ["AI Video", "Open Source", "Automation", "Next.js", "FFmpeg", "Supabase"],
     color: P.slate,
     link: "https://github.com/ajayspi/clipped-ai-studio",
     image: "clipped-ai-studio",
-    imageAlt: "Clipped AI Studio — neon scissors and film artwork from the repo",
+    imageAlt: "Clipped AI Studio — autonomous video generation engine interface",
   },
 ];
 

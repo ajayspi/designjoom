@@ -7,7 +7,6 @@ import CrawlStrip from "../components/CrawlStrip.astro";
 import QuickFacts from "../components/QuickFacts.astro";
 import About from "../components/About.astro";
 import Metrics from "../components/Metrics.astro";
-import ImpactDashboard from "../components/ImpactDashboard.astro";
 import Experience from "../components/Experience.astro";
 import Projects from "../components/Projects.astro";
 import Skills from "../components/Skills.astro";
@@ -15,6 +14,8 @@ import Results from "../components/Results.astro";
 import Faq from "../components/Faq.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
+import { IDENTITY } from "../seo";
+import { PROJECTS } from "../data";
 ---
 
 <Base>
@@ -23,9 +24,7 @@ import Footer from "../components/Footer.astro";
   <Hero />
   <CrawlStrip />
   <QuickFacts />
-  <About />
   <Metrics />
-  <ImpactDashboard />
   <Experience />
   <Projects />
   <Skills />

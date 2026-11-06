@@ -3,23 +3,39 @@ import { IDENTITY } from "../seo";
 import djLogo from "../imports/Designjoom-logo-1.png";
 ---
 
-<footer style="border-top:1px solid rgba(59,130,246,0.1);padding:24px 0">
+<footer style="border-top:1px solid var(--line);padding:24px 0">
   <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-between items-center gap-4">
     <div class="flex items-center gap-4">
       <span class="name text-shimmer">{IDENTITY.name}</span>
-      <span style="color:#2a3450;font-size:.8rem">·</span>
-      <a href="https://designjoom.com" target="_blank" rel="noopener noreferrer" aria-label="DesignJoom — opens in a new tab">
+      <span style="color:var(--faintest);font-size:.8rem">·</span>
+      <a href="/" aria-label="A V Ajay Kiran — home">
         <img src={djLogo.src} alt="DesignJoom" width={134} height={22} loading="lazy"
              style="height:22px;width:auto;filter:invert(1) sepia(1) saturate(5) hue-rotate(195deg) brightness(1.3);opacity:.8" />
       </a>
+      <span style="color:var(--faintest);font-size:.8rem">·</span>
+      <a class="resume-link" href="/services">What I do</a>
+      <span style="color:var(--faintest);font-size:.8rem">·</span>
+      <a class="resume-link" href="/work">Work</a>
+      <span style="color:var(--faintest);font-size:.8rem">·</span>
+      <a class="resume-link" href="/resume.html" target="_blank" rel="noopener noreferrer">Résumé</a>
     </div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#4a5a78">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--faint)">
       AI GROWTH · DIGITAL TRANSFORMATION · UX · AUTOMATION
     </div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#4a5a78">© 2026 · Built with AI</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--faint)">© 2026 · Built with AI</div>
   </div>
 </footer>
 
 <style>
   .name { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.1rem; }
+  .resume-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem;
+    color: var(--secondary-foreground);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1px;
+    transition: color .2s, border-color .2s;
+  }
+  .resume-link:hover { color: var(--foreground); border-color: var(--line-strong); }
 </style>

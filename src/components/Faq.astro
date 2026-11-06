@@ -26,22 +26,22 @@ import { FAQ } from "../seo";
 <style>
   .head { text-align: center; margin-bottom: 48px; }
   .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--blue); letter-spacing: .2em; margin-bottom: 12px; }
-  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #f0f4ff; }
+  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--foreground); }
   .qa {
-    background: rgba(15, 25, 55, .8);
-    border: 1px solid rgba(59, 130, 246, .2);
+    background: var(--panel);
+    border: 1px solid var(--line-strong);
     border-radius: 12px;
     padding: 0 20px;
     margin-bottom: 10px;
   }
-  .qa[open] { border-color: rgba(59, 130, 246, .45); }
+  .qa[open] { border-color: var(--line-strong); }
   summary {
     cursor: pointer;
     padding: 16px 0;
     font-family: 'Sora', sans-serif;
     font-weight: 600;
     font-size: .95rem;
-    color: #d8e4ff;
+    color: var(--text-soft);
     list-style: none;
     display: flex;
     justify-content: space-between;
@@ -52,5 +52,5 @@ import { FAQ } from "../seo";
   summary::after { content: '+'; color: var(--blue); font-size: 1.2rem; line-height: 1; flex-shrink: 0; }
   details[open] summary::after { content: '−'; }
   summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-  .qa p { padding-bottom: 16px; margin: 0; color: #8898b8; font-size: .88rem; line-height: 1.75; }
+  .qa p { padding-bottom: 16px; margin: 0; color: var(--text-body); font-size: .88rem; line-height: 1.75; }
 </style>

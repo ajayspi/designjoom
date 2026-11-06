@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A V Ajay Kiran — Resume</title>
+    <style>
+        @media print {
+            @page {
+                size: A4;
+                margin: 0.6in 0.7in;
+            }
+            body {
+                margin: 0; padding: 0; color: #000;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .page-break { page-break-after: always; display: block !important; }
+            /* Keep the on-screen toolbar out of the PDF and stop entries splitting
+               across pages — a broken entry is the ugliest thing a printed CV does. */
+            .resume-bar { display: none !important; }
+            .entry, .project-entry, .edu-line, .skills-block { page-break-inside: avoid; }
+            h2 { page-break-after: avoid; }
+            a { color: #000; text-decoration: none; }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+        }
+        /* Letterhead — same navy, traditional resume header */
+        .letterhead { text-align: center; border-bottom: 3px solid #1a3a52; padding-bottom: 14px; margin-bottom: 18px; }
+        .letterhead h1 {
+            font-size: 2.1em;
+            margin: 0 0 4px 0;
+            color: #1a3a52;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+        .letterhead .role {
+            font-size: 1em;
+            color: #2a4a66;
+            font-weight: 600;
+            margin: 2px 0 8px 0;
+            letter-spacing: 0.5px;
+        }
+        .letterhead .contact {
+            font-size: 0.82em;
+            color: #555;
+            line-height: 1.6;
+        }
+        .letterhead .contact a { color: #337ab7; text-decoration: none; }
+        /* Section headings — same style, traditional resume */
+        h2 {
+            font-size: 1.05em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            color: #1a3a52;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1.5px solid #1a3a52;
+            padding-bottom: 4px;
+        }
+        /* Experience / projects entries */
+        .entry { margin-bottom: 12px; }
+        .entry-head {
+            font-size: 0.93em;
+            margin: 10px 0 4px 0;
+            color: #1a1a1a;
+            line-height: 1.4;
+        }
+        .entry-head .role { font-weight: 700; color: #1a3a52; }
+        .entry-head .company { font-weight: 600; color: #2a4a66; }
+        .entry-head .dates { color: #666; font-size: 0.88em; }
+        ul.xyz {
+            margin: 4px 0 8px 0;
+            padding-left: 20px;
+        }
+        ul.xyz li {
+            margin-bottom: 4px;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        ul.xyz li strong { color: #1a3a52; }
+        p { margin: 0 0 8px 0; font-size: 0.92em; }
+        .summary { font-size: 0.92em; }
+        .project-entry { margin-bottom: 10px; font-size: 0.9em; }
+        .project-entry .proj-title { font-weight: 700; color: #1a3a52; }
+        .project-entry .proj-link { color: #337ab7; font-size: 0.85em; }
+        .project-entry p { margin: 2px 0; font-size: 0.9em; color: #444; }
+        .two-col {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .two-col > div { flex: 1 1 48%; min-width: 240px; }
+        .skills-block { margin-bottom: 6px; font-size: 0.9em; }
+        .skills-block .label { font-weight: 700; color: #1a3a52; }
+        .edu-line { font-size: 0.92em; margin-bottom: 4px; }
+        .footer {
+            margin-top: 28px;
+            font-size: 0.78em;
+            color: #777;
+            text-align: center;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+        .page-break { display: none; }
+        @media screen {
+            .page-break { display: none; }
+        }
+        /* Screen-only action bar. Hidden by @media print above. */
+        .resume-bar {
+            position: fixed; right: 18px; bottom: 18px; z-index: 50;
+            display: flex; gap: 10px; align-items: center;
+        }
+        .resume-bar button,
+        .resume-bar a {
+            font: 600 0.8rem/1 'Segoe UI', system-ui, sans-serif;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid #1a3a52;
+            background: #1a3a52;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+        .resume-bar a { background: #fff; color: #1a3a52; }
+        .resume-bar button:hover,
+        .resume-bar a:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(26, 58, 82, 0.25); }
+        .resume-bar button:active,
+        .resume-bar a:active { transform: translateY(0) scale(0.97); }
+        @media (prefers-reduced-motion: reduce) {
+            .resume-bar button, .resume-bar a { transition: none; }
+            .resume-bar button:hover, .resume-bar a:hover { transform: none; }
+        }
+        @media (max-width: 560px) {
+            .resume-bar { left: 12px; right: 12px; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Screen-only. "Download PDF" opens the browser's print dialog, where the
+         destination defaults to Save as PDF; the print stylesheet above is what
+         makes that output clean. Nothing here reaches the printed page. -->
+    <div class="resume-bar" role="toolbar" aria-label="Resume actions">
+        <button type="button" onclick="window.print()"
+                title="Opens your browser's print dialog — choose 'Save as PDF' as the destination.">
+            Download PDF
+        </button>
+        <a href="https://designjoom.com" target="_blank" rel="noopener noreferrer">designjoom.com</a>
+    </div>
+
+    <!-- Letterhead -->
+    <div class="letterhead">
+        <h1>A V Ajay Kiran</h1>
+        <div class="role">AI Growth &amp; Digital Strategy Leader | Lead Project Manager</div>
+        <div class="contact">
+            ajayspi@gmail.com &nbsp;|&nbsp; +91 85550 69441 &nbsp;|&nbsp; Hyderabad, India<br>
+            <a href="https://designjoom.com">designjoom.com</a> &nbsp;|&nbsp; <a href="https://github.com/ajayspi">github.com/ajayspi</a> &nbsp;|&nbsp; <a href="https://www.linkedin.com/in/aigrowthandautomationleader/">linkedin.com/in/aigrowthandautomationleader</a>
+        </div>
+    </div>
+
+    <!-- Summary -->
+    <h2>Professional Summary</h2>
+    <p class="summary">AI Growth &amp; Digital Transformation Leader driving measurable results across AI, SaaS and enterprise domains. Currently leading growth strategy at DIGIT AI (Dr. Gopichand: +99% traffic, +93% new users) and delivering enterprise digital transformation at Vigilare Bio Pharma (14K LinkedIn followers, 33K impressions). Proven cross-functional leadership of 6-member teams, managing end-to-end delivery of 14 verified live projects spanning healthcare, B2B, luxury e-commerce, talent platforms, and open-source AI systems. Specialized in Product Strategy, Launch Management, Cross-functional Leadership, Sales Enablement, and A/B Testing frameworks with deep expertise in AI product growth and enterprise transformation.</p>
+
+    <!-- Experience -->
+    <h2>Experience</h2>
+
+    <div class="entry">
+        <div class="entry-head"><span class="role">Growth Leader — AI Growth &amp; Digital Strategy Lead</span> | <span class="company">DIGIT AI</span> | Hyderabad, India <span class="dates">— Dec 2025 – Present</span></div>
+        <ul class="xyz">
+            <li><strong>Accomplished AI-driven growth strategy as measured by +99% website traffic and +93% new users, by leading cross-functional team of 6 in SEO, social media, content, UX and performance marketing initiatives.</strong></li>
+            <li><strong>Accomplished enterprise digital transformation as measured by Dr. Khalilullah's 1,400+ users and 1,900+ service page views, by architecting growth systems across AI platforms and optimization frameworks.</strong></li>
+        </ul>
+    </div>
+
+    <div class="entry">
+        <div class="entry-head"><span class="role">Lead UX &amp; Brand Consultant</span> | <span class="company">Vigilare Bio Pharma</span> | Hyderabad, India <span class="dates">— Enterprise Digital Transformation</span></div>
+        <ul class="xyz">
+            <li><strong>Accomplished brand and design system governance as measured by 14K LinkedIn followers and 33K impressions across 48 posts, by architecting UX/UI for MICC internal tools and leading corporate identity initiatives.</strong></li>
+        </ul>
+    </div>
+
+    <div class="entry">
+        <div class="entry-head"><span class="role">Growth Hacker</span> | <span class="company">Logos GmbH — Berlin, Germany</span> | <span class="dates">Remote — May 2017 – May 2022</span></div>
+        <ul class="xyz">
+            <li><strong>Accomplished 180%+ organic traffic growth as measured by 5-year product engagement, by leading UX strategy for Mojoreads.com and developing SEO/SEM initiatives that delivered customer value through Engineering-as-Marketing tools.</strong></li>
+        </ul>
+    </div>
+
+    <div class="entry">
+        <div class="entry-head"><span class="role">Digital Marketing Strategist</span> | <span class="company">Vedic IT Solutions Pvt. Ltd.</span> | India <span class="dates">— Nov 2012 – April 2017</span></div>
+        <ul class="xyz">
+            <li><strong>Accomplished digital strategies for 20+ clients as measured by combined UX, content architecture and SEO improvements, by leading website development and integrated digital campaigns for diverse businesses.</strong></li>
+        </ul>
+    </div>
+
+    <!-- Skills -->
+    <h2>Skills</h2>
+    <div class="skills-block"><span class="label">AI &amp; Growth:</span> Generative AI, LLM Workflows, Prompt Engineering, AI Content, AI Video, Workflow Automation, AI Product Development, AI Personas, Product Strategy, Launch Management, Cross-functional Leadership, Sales Enablement, A/B Testing, Go-to-Market, Growth Strategy, SEO/SEM, Performance Marketing, CRO, Lead Generation, Content Strategy, Marketing Automation</div>
+    <div class="skills-block"><span class="label">UX &amp; Product:</span> UX Strategy, User Research, Information Architecture, Wireframing &amp; Prototyping, Design Systems, Usability Testing, Product Strategy</div>
+    <div class="skills-block"><span class="label">Tools &amp; Platforms:</span> GA4, Google Search Console, Looker Studio, Hotjar, Mixpanel, Microsoft Clarity, Google Ads, Figma, FigJam, Semrush, Ahrefs, WordPress, Elementor, HTML/CSS, Astro, Next.js, TypeScript, FastAPI, Python, React 19, Vite, Three.js, WebGL, Zustand</div>
+
+    <div class="page-break"></div>
+
+    <!-- Projects -->
+    <h2>Selected Projects &amp; Technical Leadership</h2>
+    <p>Delivered end-to-end ownership for all 14 verified live projects with real metrics and measurable impact across diverse domains including healthcare, B2B, luxury e-commerce, talent platforms, and open-source AI systems.</p>
+
+    <div class="project-entry">
+        <div class="proj-title">IR4U — Healthcare Digital Growth &amp; AI Transformation</div>
+        <p><strong>Metrics:</strong> 60,900+ Video Views; 2,534 New Users; 4,300+ Page Views; 433 WhatsApp Clicks &nbsp;|&nbsp; <strong>Tags:</strong> AI Content, SEO, UX, WhatsApp, GA4 &nbsp;|&nbsp; <a class="proj-link" href="https://ir4ubyram.com">ir4ubyram.com</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">Pro Studio X — AI Content &amp; Video Automation Platform</div>
+        <p><strong>Metrics:</strong> FastAPI + Next.js 14; WebSocket live progress; Zero-key mode; Oracle Cloud deployment &nbsp;|&nbsp; <strong>Tags:</strong> AI Product, LLM Workflows, Automation, UX Architecture &nbsp;|&nbsp; <a class="proj-link" href="https://github.com/ajayspi/ProstudioX-v1">github.com/ajayspi/ProstudioX-v1</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">Vigilare — Enterprise Digital Transformation &amp; Brand</div>
+        <p><strong>Metrics:</strong> 14K LinkedIn followers; 33,248 impressions; 48 posts; Design system &nbsp;|&nbsp; <strong>Tags:</strong> UX Strategy, Brand, Healthcare, Design Systems &nbsp;|&nbsp; <a class="proj-link" href="https://www.vigilarebp.com">vigilarebp.com</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">Recytronics — UX/UI Transformation &amp; B2B Digital Experience</div>
+        <p><strong>Metrics:</strong> 16+ pages redesigned; 6 user interviews; EPR architecture; 8 weeks &nbsp;|&nbsp; <strong>Tags:</strong> UX Research, B2B, Information Architecture, Wireframing &nbsp;|&nbsp; <a class="proj-link" href="https://www.recytronics.com">recytronics.com</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">eRevival — International B2B Digital Strategy — USA</div>
+        <p><strong>Metrics:</strong> Regional SEO; B2B positioning; Multi-sector; East Coast USA &nbsp;|&nbsp; <strong>Tags:</strong> B2B, Digital Strategy, SEO, USA Market &nbsp;|&nbsp; <a class="proj-link" href="https://erevival.com">erevival.com</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">The Precious Jewels — Luxury Jewelry / E-commerce — USA</div>
+        <p><strong>Metrics:</strong> E-commerce; luxury brand; social media; USA market &nbsp;|&nbsp; <strong>Tags:</strong> Website Design, Social Media Marketing, E-commerce, Luxury &nbsp;|&nbsp; <a class="proj-link" href="https://thepreciousjewels.com">thepreciousjewels.com</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">Aura Makeover — Home Makeovers in 48 Hours — Hyderabad</div>
+        <p><strong>Metrics:</strong> 48-hour install; Zero civil work; Wallpapers · Louvers · Blinds; Hyderabad &nbsp;|&nbsp; <strong>Tags:</strong> Web Design, Local SEO, Home Services, Lead Gen &nbsp;|&nbsp; <a class="proj-link" href="https://aura-makeover.vercel.app">aura-makeover.vercel.app</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">Talenttrek — Talent Platform — Website (Next.js)</div>
+        <p><strong>Metrics:</strong> Next.js App Router; blog + industries; contact API; TypeScript &nbsp;|&nbsp; <strong>Tags:</strong> Next.js, TypeScript, Web Development &nbsp;|&nbsp; <a class="proj-link" href="https://talenttrek-mocha.vercel.app">talenttrek-mocha.vercel.app</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">Clipped AI Studio — Open-Source AI Video Engine</div>
+        <p><strong>Metrics:</strong> Next.js 16; WebCodecs export; OTIO + FCPXML bridge; 248 E2E tests; OmniRoute gateway; 80 commits &nbsp;|&nbsp; <strong>Tags:</strong> AI Video, Open Source, Automation, Next.js, FFmpeg, Supabase &nbsp;|&nbsp; <a class="proj-link" href="https://github.com/ajayspi/clipped-ai-studio">github.com/ajayspi/clipped-ai-studio</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">ROSH Express Elevators — Luxury Home Elevator Marketing Site</div>
+        <p><strong>Metrics:</strong> React 19 + Vite 8; framer-motion 14; 5-storey scroll hero; Live on Vercel &nbsp;|&nbsp; <strong>Tags:</strong> React, Vite, Framer Motion, UI/UX, Scroll Animation &nbsp;|&nbsp; <a class="proj-link" href="https://rosh-site-tau.vercel.app">rosh-site-tau.vercel.app</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">AuroMakeover Platform — Vertical SaaS — Home Interior Platform</div>
+        <p><strong>Metrics:</strong> Next.js 16 + React 19; 117 E2E tests; 10/60/30 escrow model; Vercel production &nbsp;|&nbsp; <strong>Tags:</strong> Next.js, SaaS, Prisma, Framer Motion, Vertical SaaS &nbsp;|&nbsp; <a class="proj-link" href="https://github.com/ajayspi/Aura-Makeover-">github.com/ajayspi/Aura-Makeover-</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">StratForge — Regime-Adaptive Crypto Trading Bot</div>
+        <p><strong>Metrics:</strong> Python 3.12 + FastAPI; 79 modules; 60 test files; 5% capital guard &nbsp;|&nbsp; <strong>Tags:</strong> Python, Quant, FastAPI, Asyncio, Risk Engine &nbsp;|&nbsp; <a class="proj-link" href="https://github.com/ajayspi/stratforge">github.com/ajayspi/stratforge</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">MediCall-AI — Multi-Language Medical Voice AI</div>
+        <p><strong>Metrics:</strong> LiveKit + Deepgram; FastAPI + Next.js 16; 5 Indian languages; PostgreSQL + pgvector &nbsp;|&nbsp; <strong>Tags:</strong> Voice AI, FastAPI, LiveKit, Next.js, Healthcare &nbsp;|&nbsp; <a class="proj-link" href="https://github.com/ajayspi/MediCall-AI">github.com/ajayspi/MediCall-AI</a></p>
+    </div>
+
+    <div class="project-entry">
+        <div class="proj-title">OrigamiStudio — Computational Origami &amp; 3D Paper Engineering</div>
+        <p><strong>Metrics:</strong> React 19 + Vite 8; 63 origami kits; Three.js R3F; MIT FOLD export &nbsp;|&nbsp; <strong>Tags:</strong> React, Three.js, WebGL, Zustand, Education &nbsp;|&nbsp; <a class="proj-link" href="https://github.com/ajayspi/origamistudio">github.com/ajayspi/origamistudio</a></p>
+    </div>
+
+    <!-- Education -->
+    <h2>Education &amp; Certifications</h2>
+    <div class="edu-line"><strong>HFI Certified User Experience Analyst (CXA)</strong> — Human Factors International — Jan 2026</div>
+    <div class="edu-line"><strong>Generative AI Mastermind</strong> — Outskill — 2025</div>
+    <div class="edu-line"><strong>Digital Marketing</strong> — Google Digital Garage — 2023</div>
+
+    <h2>Availability</h2>
+    <p>Hyderabad, India · Remote-friendly · Full-time Lead Growth &amp; Project Manager · Focus: AI Product Growth, SaaS GTM, B2B Marketing, Enterprise Digital Transformation, Cross-functional Team Leadership, Design System Governance, End-to-End Delivery</p>
+
+    <div class="footer">
+        <p>© 2026 A V Ajay Kiran | All metrics verified at designjoom.com | Resume generated from verified portfolio data (src/data.ts, src/seo.ts)</p>
+    </div>
+</body>
+</html>

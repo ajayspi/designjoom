@@ -253,6 +253,36 @@ if (!arg) {
   }
 }
 
+// Theme guard. A hardcoded neutral quietly breaks the light theme in that one spot, so
+// fail the build instead. Brand accents (#3b82f6, #7c3aed, #10b981, #f59e0b, #ec4899,
+// #14b8a6, #06b6d4) and the decorative orbit/radial glows are allowed.
+{
+  const NEUTRAL_HEX = /#(?:f0f4ff|f8fafc|e8eeff|d8e4ff|c8d8f0|cbd5e1|a8b8d8|8898b8|6b7fa8|4a5a78|2a3450|6b9fef)\b/i;
+  const NEUTRAL_RGBA = /rgba\(\s*(?:5\s*,\s*8\s*,\s*(?:16|20)|15\s*,\s*25\s*,\s*55|10\s*,\s*15\s*,\s*35|255\s*,\s*255\s*,\s*255|59\s*,\s*130\s*,\s*246)\s*,/i;
+  const offenders = [];
+  const scanSrc = (dir) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const p = join(dir, e.name);
+      if (e.isDirectory()) { scanSrc(p); continue; }
+      if (!e.name.endsWith(".astro")) continue;
+      readFileSync(p, "utf8").split("\n").forEach((line, i) => {
+        if (NEUTRAL_HEX.test(line) || NEUTRAL_RGBA.test(line)) offenders.push(`${relative(process.cwd(), p)}:${i + 1}`);
+      });
+    }
+  };
+  scanSrc(join(process.cwd(), "src"));
+  ok(offenders.length === 0,
+    `components use theme tokens, not hardcoded neutrals — offenders: ${offenders.join(", ")}`);
+
+  const cssDir = join(process.cwd(), "dist", "_astro");
+  const css = existsSync(cssDir)
+    ? readdirSync(cssDir).filter((f) => f.endsWith(".css"))
+        .map((f) => readFileSync(join(cssDir, f), "utf8")).join("")
+    : "";
+  ok(/data-theme=(?:"light"|light)/.test(css), "light-theme tokens ship in the CSS bundle");
+  ok(html.includes("dj-theme"), "theme bootstrap runs before first paint");
+}
+
 if (fails.length) {
   console.error(`VERIFY FAIL (${fails.length})`);
   for (const f of fails) console.error(`  ✗ ${f}`);

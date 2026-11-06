@@ -5,7 +5,7 @@ layout: none
 
 **Target Role:** Lead Project Manager — Confetti Design Studio (Branding & Packaging Design Studio, Remote — India, up to 22 LPA)
 **Source:** Confetti Design Studio job posting (Lead Project Manager — 20+ design team, VIP clients, 8+ yrs exp)
-**Contact:** ajayspi@gmail.com · +91 98853 69345 · Hyderabad, India · designjoom.com · github.com/ajayspi · linkedin.com/in/aigrowthandautomationleader/
+**Contact:** ajayspi@gmail.com · +91 85550 69441 · Hyderabad, India · designjoom.com · github.com/ajayspi · linkedin.com/in/aigrowthandautomationleader/
 
 ---
 

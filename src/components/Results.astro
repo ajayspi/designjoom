@@ -40,19 +40,19 @@ import { RESULTS } from "../seo";
 <style>
   .head { text-align: center; margin-bottom: 48px; }
   .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--blue); letter-spacing: .2em; margin-bottom: 12px; }
-  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #f0f4ff; }
-  .note { margin-top: 12px; color: #6b7fa8; font-size: .9rem; }
+  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--foreground); }
+  .note { margin-top: 12px; color: var(--muted-foreground); font-size: .9rem; }
   .wrap { border-radius: 20px; padding: 28px; overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; min-width: 520px; }
-  caption { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: #6b7fa8; padding-bottom: 12px; }
+  caption { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--muted-foreground); padding-bottom: 12px; }
   th {
     text-align: left; font-family: 'JetBrains Mono', monospace;
-    font-size: .65rem; color: #6b9fef; letter-spacing: .12em;
+    font-size: .65rem; color: var(--accent-text); letter-spacing: .12em;
     text-transform: uppercase; font-weight: 500;
-    padding: 8px 12px 8px 0; border-bottom: 1px solid rgba(59, 130, 246, .2);
+    padding: 8px 12px 8px 0; border-bottom: 1px solid var(--line-strong);
   }
-  td { padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(255, 255, 255, .05); font-size: .85rem; color: #8898b8; }
+  td { padding: 12px 12px 12px 0; border-bottom: 1px solid var(--hairline); font-size: .85rem; color: var(--text-body); }
   tr:last-child td { border-bottom: none; }
-  .metric { color: #d8e4ff; font-weight: 600; }
-  .period { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: #6b7fa8; white-space: nowrap; }
+  .metric { color: var(--text-soft); font-weight: 600; }
+  .period { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--muted-foreground); white-space: nowrap; }
 </style>

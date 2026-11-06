@@ -1,52 +1,79 @@
 ---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import type { ImageMetadata } from "astro";
 import { PROJECTS } from "../data";
 
-const services = {
-  "AI Content": "ai-product",
-  "AI Video Generation": "ai-product",
-  "UX Strategy": "ux-strategy",
-  "SEO": "growth",
-  "Growth Strategy": "growth",
-  "Digital Transformation": "ux-strategy",
-  "Website Development": "architecture",
-  "Brand Design": "brand",
-  "Recruitment Platform": "architecture",
+// Same capture map and build-time guard as Projects.astro — the previous version of this
+// page pointed every card at /work/<slug>, routes that were never built, and loaded
+// /imports/projects/*.webp from public/, where those files do not exist.
+import ir4u from "../imports/projects/ir4u.webp";
+import vigilare from "../imports/projects/vigilare.webp";
+import recytronics from "../imports/projects/recytronics.webp";
+import erevival from "../imports/projects/erevival.webp";
+import preciousJewels from "../imports/projects/precious-jewels.webp";
+import auraMakeover from "../imports/projects/aura-makeover.webp";
+import proStudioX from "../imports/projects/pro-studio-x.webp";
+import talenttrek from "../imports/projects/talenttrek.webp";
+import clipped from "../imports/projects/clipped-ai-studio.webp";
+
+const SHOTS: Record<string, ImageMetadata> = {
+  ir4u, vigilare, recytronics, erevival,
+  "precious-jewels": preciousJewels,
+  "aura-makeover": auraMakeover,
+  "pro-studio-x": proStudioX,
+  talenttrek, "clipped-ai-studio": clipped,
 };
+
+const missing = PROJECTS.filter((p) => !SHOTS[p.image]).map((p) => `${p.name} -> "${p.image}"`);
+if (missing.length) throw new Error(`work.astro: no screenshot for ${missing.join(", ")}`);
 ---
 
-<section id="projects" class="projects-section">
-  <div class="max-w-7xl mx-auto px-6 py-24 md:py-32">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Verified work. Real metrics.</h2>
-      <p class="text-muted-foreground text-lg">Every project traces to a verified source. No invented numbers.</p>
-    </div>
+<Base>
+  <Nav />
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {PROJECTS.map((project) => (
-        <a key={project.name} href={`/work/${project.name.toLowerCase().replace(/\s+/g, "-")}`} class="block glass card-hover rounded-2xl overflow-hidden transition-all hover:border-blue-500/30">
-          <div class="relative aspect-[4/3]">
-            <img src={`/imports/projects/${project.image}.webp`} alt={project.imageAlt || project.name} class="w-full h-full object-cover" loading="lazy" />
-            <span class="absolute top-4 right-4 text-xs font-medium bg-black/60 backdrop-blur px-2 py-1 rounded-full text-white">GitHub repo</span>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold mb-2">{project.name}</h3>
-            <p class="text-sm text-blue-600 font-medium mb-2">{project.subtitle}</p>
-            <p class="text-sm text-muted-foreground mb-4">{project.description}</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              {project.tags?.slice(0, 3).map((tag) => (
-                <span class="tag text-xs">{tag}</span>
-              ))}
-            </div>
-          </div>
-        </a>
-      ))}
-    </div>
+  <section id="projects" style="padding:140px 0 80px">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="font-mono text-xs tracking-[0.2em] mb-3" style="color:var(--blue)">WORK</div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Verified work. Real metrics.</h1>
+        <p class="text-muted-foreground text-lg">Every project traces to a verified source. No invented numbers.</p>
+      </div>
 
-    <div class="mt-16 text-center">
-      <p class="text-muted-foreground mb-6">Ready to build your next AI experience?</p>
-      <a href="#contact" class="btn-primary px-8 py-4 rounded-full text-base font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25">
-        Discuss your project →
-      </a>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {PROJECTS.map((p) => {
+          const shot = SHOTS[p.image];
+          return (
+            <a href={p.link} target="_blank" rel="noopener noreferrer"
+               class="block glass card-hover rounded-2xl overflow-hidden" style={`--accent:${p.color}`}>
+              <div class="relative" style="aspect-ratio:4/3">
+                <img src={shot.src} alt={p.imageAlt} width={shot.width} height={shot.height}
+                     class="w-full h-full object-cover" loading="lazy" decoding="async" />
+                <span class="absolute top-4 right-4 text-xs font-medium px-2 py-1 rounded-full bg-black/60 text-white backdrop-blur">
+                  {p.link.includes("github.com") ? "GitHub repo" : "Live site"}
+                </span>
+              </div>
+              <div class="p-6">
+                <h2 class="text-xl font-bold mb-2" style={`color:${p.color}`}>{p.name}</h2>
+                <p class="text-sm font-medium mb-2" style="color:var(--secondary-foreground)">{p.subtitle}</p>
+                <p class="text-sm text-muted-foreground mb-4">{p.description}</p>
+                <div class="flex flex-wrap gap-2">
+                  {p.tags.slice(0, 3).map((t) => <span class="tag text-xs">{t}</span>)}
+                </div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+      <div class="mt-16 text-center">
+        <p class="text-muted-foreground mb-6">Want to talk about a project?</p>
+        <a href="/#contact" class="inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white"
+           style="background:linear-gradient(135deg,#3b82f6,#7c3aed)">Get in touch →</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <Footer />
+</Base>

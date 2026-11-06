@@ -1,6 +1,11 @@
 @import 'tailwindcss';
 
+/* Two themes over one token set. Brand accents (--blue, --violet, --cyan, --green and
+   the per-project P.* colours) are identity and stay identical in both; only the
+   neutrals below flip. Nothing in a component may hardcode a neutral — see
+   scripts/verify.mjs, which fails the build if one creeps back in. */
 :root {
+  color-scheme: dark;
   --background: #050810;
   --foreground: #f0f4ff;
   --card: rgba(10, 15, 35, 0.7);
@@ -20,6 +25,50 @@
   --violet: #7c3aed;
   --cyan: #06b6d4;
   --green: #10b981;
+
+  /* Theme-aware neutrals */
+  --text-soft: #d8e4ff;
+  --text-dim: #c8d8f0;
+  --text-body: #8898b8;
+  --faint: #4a5a78;
+  --faintest: #2a3450;
+  --accent-text: #6b9fef;
+  --surface-tint: rgba(5, 8, 20, 0.4);
+  --panel: rgba(15, 25, 55, 0.8);
+  --overlay: rgba(5, 8, 16, 0.92);
+  --chip: rgba(255, 255, 255, 0.03);
+  --hairline: rgba(255, 255, 255, 0.06);
+  --line: rgba(59, 130, 246, 0.15);
+  --line-soft: rgba(59, 130, 246, 0.08);
+  --line-strong: rgba(59, 130, 246, 0.3);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --background: #f6f8fc;
+  --foreground: #0b1220;
+  --card: rgba(255, 255, 255, 0.82);
+  --card-foreground: #16233d;
+  --secondary: #e6ecf7;
+  --secondary-foreground: #3d4d66;
+  --muted: #eef2f9;
+  --muted-foreground: #5b6d88;
+  --border: rgba(37, 99, 235, 0.2);
+
+  --text-soft: #16233d;
+  --text-dim: #24344f;
+  --text-body: #4a5c78;
+  --faint: #7b8aa3;
+  --faintest: #b9c4d6;
+  --accent-text: #2563eb;
+  --surface-tint: rgba(255, 255, 255, 0.6);
+  --panel: #ffffff;
+  --overlay: rgba(255, 255, 255, 0.88);
+  --chip: rgba(10, 20, 40, 0.04);
+  --hairline: rgba(10, 20, 40, 0.1);
+  --line: rgba(37, 99, 235, 0.18);
+  --line-soft: rgba(37, 99, 235, 0.1);
+  --line-strong: rgba(37, 99, 235, 0.35);
 }
 
 * { box-sizing: border-box; }
@@ -208,8 +257,8 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 }
 .card-hover:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 64px rgba(59, 130, 246, 0.2);
-  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 24px 64px var(--line-strong);
+  border-color: var(--line-strong);
 }
 
 .nav-link {
@@ -242,8 +291,8 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 .tag {
   display: inline-block;
   padding: 4px 12px;
-  background: rgba(59, 130, 246, 0.08);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: var(--line-soft);
+  border: 1px solid var(--line);
   border-radius: 999px;
   font-size: 0.78rem;
   color: var(--secondary-foreground);
@@ -251,8 +300,8 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
   transition: all 0.2s;
 }
 .tag:hover {
-  background: rgba(59, 130, 246, 0.18);
-  border-color: rgba(59, 130, 246, 0.5);
+  background: var(--line);
+  border-color: var(--line-strong);
   color: var(--foreground);
 }
 
@@ -270,6 +319,38 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
   border-radius: 50%;
   border: 1px solid;
   animation: spin-slow linear infinite;
+}
+
+/* Page enter — route fade, no client router (ClientRouter would re-run the six
+   Base.astro scripts and double-bind their listeners). Opacity only: a transform
+   here would turn #main into the containing block for any fixed child mid-animation. */
+@keyframes page-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+#main { animation: page-enter .5s cubic-bezier(.22, .61, .36, 1) both; }
+
+/* Light theme: `screen` blend on a near-white page erases the cursor entirely. */
+[data-theme="light"] .cursor,
+[data-theme="light"] .cursor-follower { mix-blend-mode: normal; }
+[data-theme="light"] .cursor-follower { border-color: rgba(37, 99, 235, 0.55); }
+
+/* Micro-interactions. All of it dies under the reduced-motion backstop below. */
+.nav-logo img { transition: filter 0.4s ease; }
+/* Inline `filter` on the logo is dark-mode-only; beat it in light mode. */
+[data-theme="light"] .nav-logo img { filter: none !important; }
+
+.btn-primary:active,
+.btn-outline:active,
+.hire-btn:active,
+.tag:active { transform: translateY(1px) scale(0.97); }
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* Reduced-motion backstop: static, fully readable site */

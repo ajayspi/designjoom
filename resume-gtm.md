@@ -5,7 +5,7 @@ layout: none
 
 **Target Role:** Go To Market Lead — TechUp Labs (SaaS: data extraction, AI-powered tools, backend analytics)
 **Application Source:** Indeed job posting (d7316659a4f033ca)
-**Contact:** ajayspi@gmail.com · +91 98853 69345 · Hyderabad, India · https://designjoom.com · GitHub: github.com/ajayspi · LinkedIn: linkedin.com/in/aigrowthandautomationleader/
+**Contact:** ajayspi@gmail.com · +91 85550 69441 · Hyderabad, India · https://designjoom.com · GitHub: github.com/ajayspi · LinkedIn: linkedin.com/in/aigrowthandautomationleader/
 
 ---
 

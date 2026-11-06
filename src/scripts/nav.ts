@@ -10,6 +10,54 @@ onReady(() => {
     addEventListener("scroll", onScroll, { passive: true });
   }
 
+  // Theme toggle. The initial value is applied by the inline script in Base.astro's
+  // <head> (before first paint); this only handles switching and reflecting state.
+  const toggle = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
+  if (toggle) {
+    const root = document.documentElement;
+    const sync = () => {
+      const light = root.dataset.theme === "light";
+      toggle.dataset.mode = light ? "light" : "dark";
+      toggle.setAttribute("aria-pressed", String(light));
+      toggle.setAttribute("aria-label", light ? "Switch to dark theme" : "Switch to light theme");
+      const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+      if (meta) meta.content = light ? "#f6f8fc" : "#050810";
+    };
+    sync();
+    toggle.addEventListener("click", () => {
+      const next = root.dataset.theme === "light" ? "dark" : "light";
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem("dj-theme", next);
+      } catch {
+        /* private mode — the choice just won't persist */
+      }
+      sync();
+    });
+  }
+
+  // Mobile menu. Below md the desktop link list is hidden entirely, so this panel is
+  // the only navigation available there.
+  const menuBtn = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const panel = document.querySelector<HTMLElement>("[data-menu-panel]");
+  if (menuBtn && panel) {
+    const setOpen = (open: boolean) => {
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      panel.hidden = !open;
+    };
+    menuBtn.addEventListener("click", () => setOpen(panel.hidden));
+    panel.addEventListener("click", (e) => {
+      if ((e.target as HTMLElement).closest("a")) setOpen(false);
+    });
+    addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !panel.hidden) {
+        setOpen(false);
+        menuBtn.focus();
+      }
+    });
+  }
+
   const sidenav = document.querySelector<HTMLElement>("[data-sidenav]");
   if (!sidenav) return;
 

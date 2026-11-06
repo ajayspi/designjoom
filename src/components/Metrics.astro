@@ -72,16 +72,16 @@ const CARDS = [
 <style>
   .head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
   .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--blue); letter-spacing: .2em; margin-bottom: 4px; }
-  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 800; color: #f0f4ff; line-height: 1.1; }
-  .head-note { font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: #4a5a78; letter-spacing: .1em; }
+  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 800; color: var(--foreground); line-height: 1.1; }
+  .head-note { font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--faint); letter-spacing: .1em; }
 
   .card { position: relative; overflow: hidden; min-width: 0; transition: transform .3s ease, box-shadow .3s ease; }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(59, 130, 246, .18); }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px var(--line-strong); }
   .orb { position: absolute; top: -16px; right: -16px; width: 80px; height: 80px; border-radius: 50%; background: var(--accent); opacity: .06; filter: blur(24px); }
   .card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
   .icon-box { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--accent); }
-  .label { font-family: 'Sora', sans-serif; font-weight: 600; font-size: .72rem; color: #c8d8f0; line-height: 1.2; }
-  .sub { font-family: 'JetBrains Mono', monospace; font-size: .57rem; color: #4a5a78; margin-top: 1px; }
+  .label { font-family: 'Sora', sans-serif; font-weight: 600; font-size: .72rem; color: var(--text-dim); line-height: 1.2; }
+  .sub { font-family: 'JetBrains Mono', monospace; font-size: .57rem; color: var(--faint); margin-top: 1px; }
   .num { font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 2.8vw, 2.2rem); line-height: 1; }
   .spark { margin-top: 10px; height: 44px; min-height: 44px; }
 </style>

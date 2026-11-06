@@ -1,10 +1,16 @@
 ---
-const services = [
+import Base from "../layouts/Base.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+// First person, not an agency catalogue. Each capability maps to a real project with
+// verified metrics — the examples below are the same ones quoted in src/data.ts.
+const capabilities = [
   {
     id: "ai-product",
     title: "AI Product Development",
     subtitle: "From concept to production-grade AI.",
-    desc: "LLM workflows, intelligent automation, AI agents, and custom pipelines. We design AI products that solve real business problems.",
+    desc: "I build LLM workflows, intelligent automation and AI agents — products that hold up in production, not just in a demo.",
     examples: ["DIGIT AI — LLM workflows", "IR4U — AI content generation"],
     tags: ["LLM", "Prompt Engineering", "AI Agents", "Automation"],
     color: "#3b82f6",
@@ -13,7 +19,7 @@ const services = [
     id: "ux-strategy",
     title: "UX Strategy & Design Systems",
     subtitle: "User-first experiences that scale.",
-    desc: "User research, information architecture, wireframes, component libraries, and design systems that grow with your product.",
+    desc: "User research, information architecture, wireframes and component libraries that grow with the product.",
     examples: ["Aura Makeover — UX redesign", "Logos GmbH — Design system"],
     tags: ["UX Research", "Design System", "Wireframes", "UI/UX"],
     color: "#10b981",
@@ -21,8 +27,8 @@ const services = [
   {
     id: "growth",
     title: "Growth Marketing & SEO",
-    subtitle: "Measurable growth. Not vanity metrics.",
-    desc: "Technical SEO, content strategy, paid media, CRO, and analytics. Every decision backed by verified data.",
+    subtitle: "Measurable growth, not vanity metrics.",
+    desc: "Technical SEO, content strategy, paid media, CRO and analytics — every decision backed by verified data.",
     examples: ["IR4U — 60,900+ video views", "Recytronics — EPR visibility"],
     tags: ["SEO", "Content Strategy", "Paid Media", "CRO", "Analytics"],
     color: "#f59e0b",
@@ -30,8 +36,8 @@ const services = [
   {
     id: "video",
     title: "AI Video Generation",
-    subtitle: "From brief to finished Short — fully automated.",
-    desc: "AI script-to-video pipeline: brief → niche → script → storyboard → AI images → music → ffmpeg render, with live per-step progress tracking.",
+    subtitle: "From brief to finished Short, automated.",
+    desc: "An AI script-to-video pipeline: brief → niche → script → storyboard → AI images → music → ffmpeg render, with live per-step progress.",
     examples: ["Pro Studio X — AI Short pipeline", "Clipped AI Studio — Video engine"],
     tags: ["Script Generation", "Storyboard", "FFmpeg", "WebSocket"],
     color: "#ec4899",
@@ -40,7 +46,7 @@ const services = [
     id: "architecture",
     title: "Website Architecture & Development",
     subtitle: "Build once. Scale forever.",
-    desc: "Astro + Next.js builds, CMS integrations, site migrations, and composable web architecture. Built for speed and maintainability.",
+    desc: "Astro and Next.js builds, CMS integrations, migrations and composable architecture — built for speed and maintainability.",
     examples: ["eRevival — International B2B site", "Precious Jewels — E-commerce"],
     tags: ["Astro", "Next.js", "CMS", "Migration", "Performance"],
     color: "#14b8a6",
@@ -48,8 +54,8 @@ const services = [
   {
     id: "brand",
     title: "Brand & Identity",
-    subtitle: "Design language that communicates.",
-    desc: "Brand strategy, visual identity, typography, color systems, and marketing collateral. Your brand is your promise.",
+    subtitle: "A design language that communicates.",
+    desc: "Brand strategy, visual identity, typography, colour systems and marketing collateral.",
     examples: ["Talenttrek — Recruitment brand", "Precious Jewels — Luxury identity"],
     tags: ["Brand Strategy", "Logo Design", "Typography", "Color System"],
     color: "#7c3aed",
@@ -57,33 +63,41 @@ const services = [
 ];
 ---
 
-<section id="services" class="services-section">
-  <div class="max-w-7xl mx-auto px-6 py-24 md:py-32">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Services that move the needle.</h2>
-      <p class="text-muted-foreground text-lg">AI + Growth + UX + Digital Transformation — every service backed by verified results.</p>
-    </div>
+<Base>
+  <Nav />
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {services.map(({ id, title, subtitle, desc, examples, tags, color }) => (
-        <div key={id} class="glass card-hover rounded-2xl p-8 transition-all hover:border-blue-500/30" style={`border-top: 3px solid ${color}`}>
-          <h3 class="text-xl font-bold mb-2">{title}</h3>
-          <p class="text-sm font-medium text-blue-600 mb-4">{subtitle}</p>
-          <p class="text-sm text-muted-foreground mb-6">{desc}</p>
-          <ul class="text-sm mb-6 space-y-1">
-            {examples.map((ex) => <li class="text-muted-foreground">• {ex}</li>)}
-          </ul>
-          <div class="flex flex-wrap gap-2">
-            {tags.map((t) => <span class="tag">{t}</span>)}
+  <section id="services" style="padding:140px 0 80px">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="font-mono text-xs tracking-[0.2em] mb-3" style="color:var(--blue)">WHAT I DO</div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Capabilities, backed by results.</h1>
+        <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+          AI, growth, UX and digital transformation — every capability below maps to a project with verified metrics.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {capabilities.map(({ id, title, subtitle, desc, examples, tags, color }) => (
+          <div id={id} class="glass card-hover rounded-2xl p-8" style={`border-top:3px solid ${color}`}>
+            <h2 class="text-xl font-bold mb-2">{title}</h2>
+            <p class="text-sm font-medium mb-4" style={`color:${color}`}>{subtitle}</p>
+            <p class="text-sm text-muted-foreground mb-6">{desc}</p>
+            <ul class="text-sm mb-6 space-y-1">
+              {examples.map((ex) => <li class="text-muted-foreground">• {ex}</li>)}
+            </ul>
+            <div class="flex flex-wrap gap-2">
+              {tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
 
-    <div class="mt-16 text-center">
-      <a href="#contact" class="btn-primary px-8 py-4 rounded-full text-base font-medium transition-all hover:shadow-lg hover:shadow-blue-500/25">
-        Start a Project →
-      </a>
+      <div class="mt-16 text-center">
+        <a href="/#contact" class="inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white"
+           style="background:linear-gradient(135deg,#3b82f6,#7c3aed)">Get in touch →</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <Footer />
+</Base>

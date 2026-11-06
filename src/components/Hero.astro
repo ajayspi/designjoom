@@ -9,25 +9,25 @@ const CERTS = [
 ];
 ---
 
-<section id="hero" class="hero editorial-hero" style="background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,130,246,0.08) 0%, transparent 70%)">
+<section id="hero" class="hero editorial-hero" style="background:radial-gradient(ellipse 80% 60% at 50% 0%, var(--line-soft) 0%, transparent 70%)">
   <canvas id="neural-canvas" aria-hidden="true"></canvas>
   <div class="orbits" aria-hidden="true">
-    <div class="orbit-ring" style="width:620px;height:620px;border-color:rgba(59,130,246,0.05);animation-duration:44s"></div>
+    <div class="orbit-ring" style="width:620px;height:620px;border-color:var(--line-soft);animation-duration:44s"></div>
     <div class="orbit-ring" style="width:400px;height:400px;border-color:rgba(124,58,237,0.07);animation-duration:28s;animation-direction:reverse"></div>
     <div class="orbit-ring" style="width:230px;height:230px;border-color:rgba(6,182,212,0.09);animation-duration:16s"></div>
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-6 py-24 md:py-32 text-center pt-24 pb-12">
     <span class="editorial-tag mb-8 inline-block">AI GROWTH & DIGITAL TRANSFORMATION</span>
-    <h1 class="editorial-headline text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-none mb-6 text-center">
-      Designjoom.<br class="hidden md:block" /> <span style="color:#6b9fef">We build interactive AI experiences.</span>
+    <h1 class="editorial-headline text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-none mb-6 text-center">
+      {IDENTITY.name}
     </h1>
     <p class="editorial-sub text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
-      Agency services: AI product development, UX strategy, growth marketing, AI video generation, website architecture, and brand identity. Based in Hyderabad. Working globally.
+      AI Growth &amp; Digital Transformation Leader — 14+ years building AI products, growth systems and digital experiences across India, Germany, the US and Australia.
     </p>
     <div class="flex flex-wrap gap-4 justify-center mb-12">
-      <a href="#projects" class="btn-primary px-6 py-3 rounded-full text-sm font-medium">See Our Work</a>
-      <a href="#contact" class="btn-outline px-6 py-3 rounded-full text-sm font-medium">Start a Project</a>
+      <a href="#projects" class="btn-primary px-6 py-3 rounded-full text-sm font-medium">View my work</a>
+      <a href="#contact" class="btn-outline px-6 py-3 rounded-full text-sm font-medium">Get in touch</a>
     </div>
     <div class="flex items-center gap-6 text-sm text-muted-foreground justify-center">
       <span>14+ years</span><span>/</span><span>9 verified projects</span><span>/</span><span>4 countries</span><span>/</span><span>13 real images</span>
@@ -37,28 +37,28 @@ const CERTS = [
   <!-- Process Concept → Prototype → Test -->
   <div class="mt-16 md:mt-24 text-center">
     <div class="flex justify-center gap-6 items-center flex-wrap">
-      <div class="text-center"><div class="process-step">Concept</div><div class="process-desc">One core. First we decide the one thing people will remember.</div></div>
+      <div class="text-center"><div class="process-step">Concept</div><div class="process-desc">One core. First I decide the one thing people will remember.</div></div>
       <div class="hidden md:block w-16 h-px bg-gradient-to-r from-blue-600/50 to-transparent"></div>
       <div class="text-center"><div class="process-step">Prototype</div><div class="process-desc">A draft that actually runs, not just a mock.</div></div>
       <div class="hidden md:block w-16 h-px bg-gradient-to-r from-blue-600/50 to-transparent"></div>
       <div class="text-center"><div class="process-step">Test</div><div class="process-desc">Finished only after testing in real devices and spaces.</div></div>
     </div>
-    <p class="mt-8 text-sm text-muted-foreground">We check every step for ourselves, and finish one experience at a time.</p>
+    <p class="mt-8 text-sm text-muted-foreground">I check every step myself, and finish one experience at a time.</p>
   </div>
 </section>
 
 <style>
   .editorial-hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding-top: 100px; }
-  .editorial-tag { display: inline-block; padding: 6px 16px; background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2); border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-size: .7rem; color: #6b9fef; letter-spacing: .1em; }
-  .editorial-headline { font-family: 'Sora', sans-serif; font-weight: 900; font-size: clamp(3rem, 8vw, 6rem); line-height: 1.05; letter-spacing: -.04em; color: #f8fafc; text-align: center; }
-  .editorial-sub { font-size: clamp(1rem, 2vw, 1.25rem); color: #cbd5e1; max-width: 640px; }
+  .editorial-tag { display: inline-block; padding: 6px 16px; background: var(--line); border: 1px solid var(--line-strong); border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-size: .7rem; color: var(--accent-text); letter-spacing: .1em; }
+  .editorial-headline { font-family: 'Sora', sans-serif; font-weight: 900; font-size: clamp(3rem, 8vw, 6rem); line-height: 1.05; letter-spacing: -.04em; color: var(--foreground); text-align: center; }
+  .editorial-sub { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--text-dim); max-width: 640px; }
   .btn-primary { background: linear-gradient(135deg, #3b82f6, #7c3aed); color: #fff; padding: 12px 24px; border-radius: 999px; font-size: .875rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .3s ease; }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(59,130,246,.4); }
-  .btn-outline { color: #f8fafc; padding: 12px 24px; border-radius: 999px; font-size: .875rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border: 2px solid rgba(255,255,255,.1); transition: all .3s ease; }
-  .btn-outline:hover { border-color: rgba(59,130,246,.5); color: #f8fafc; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px var(--line-strong); }
+  .btn-outline { color: var(--foreground); padding: 12px 24px; border-radius: 999px; font-size: .875rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border: 2px solid var(--hairline); transition: all .3s ease; }
+  .btn-outline:hover { border-color: var(--line-strong); color: var(--foreground); }
   .orbits { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
   .orbit-ring { position: absolute; border-radius: 50%; border: 1px solid; animation: spin-slow linear infinite; }
   .process-step { font-family: 'Sora', sans-serif; font-weight: 700; font-size: .75rem; color: #3b82f6; text-transform: uppercase; letter-spacing: .08em; }
-  .process-desc { font-size: .75rem; color: #6b7fa8; max-width: 140px; }
+  .process-desc { font-size: .75rem; color: var(--muted-foreground); max-width: 140px; }
   @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 </style>

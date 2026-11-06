@@ -14,7 +14,7 @@ export const IDENTITY = {
   employer: "DIGIT AI",
   location: { city: "Hyderabad", region: "Telangana", country: "India" },
   email: "ajayspi@gmail.com",
-  phone: "+91 98853 69345",
+  phone: "+91 85550 69441",
   sameAs: [
     "https://www.linkedin.com/in/aigrowthandautomationleader/",
     "https://github.com/ajayspi",
@@ -93,10 +93,10 @@ export const FAQ = [
   },
   {
     q: "Is he available for roles and projects?",
-    a: "Yes. He is available for AI growth, digital transformation and UX strategy roles, and for consulting engagements spanning AI workflow architecture, growth strategy and UX transformation. He can be reached by email at ajayspi@gmail.com or by phone on +91 98853 69345.",
+    a: "Yes. He is available for AI growth, digital transformation and UX strategy roles, and for consulting engagements spanning AI workflow architecture, growth strategy and UX transformation. He can be reached by email at ajayspi@gmail.com or by phone on +91 85550 69441.",
   },
   {
     q: "How do I contact A V Ajay Kiran?",
-    a: "The fastest route is email at ajayspi@gmail.com, or the contact form on this page, which delivers messages directly to his inbox. He is also on LinkedIn as aigrowthandautomationleader and on GitHub as ajayspi. For urgent matters, phone is +91 98853 69345.",
+    a: "The fastest route is email at ajayspi@gmail.com, or phone on +91 85550 69441. He is also on LinkedIn as aigrowthandautomationleader and on GitHub as ajayspi.",
   },
 ];

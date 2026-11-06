@@ -2,7 +2,7 @@
 import { EXPERIENCE } from "../data";
 ---
 
-<section id="experience" style="padding:100px 0;background:rgba(5,8,20,0.5)">
+<section id="experience" style="padding:100px 0;background:var(--surface-tint)">
   <div class="max-w-4xl mx-auto px-6">
     <div class="head" data-reveal>
       <div class="eyebrow">EXPERIENCE</div>
@@ -26,7 +26,7 @@ import { EXPERIENCE } from "../data";
             </div>
             <ul class="bullets">
               {exp.bullets.map((b) => (
-                <li style={`color:${exp.color}`}><span aria-hidden="true">›</span><span>{b}</span></li>
+                <li><span aria-hidden="true" style={`color:${exp.color}`}>›</span><span>{b}</span></li>
               ))}
             </ul>
           </div>
@@ -39,7 +39,7 @@ import { EXPERIENCE } from "../data";
 <style>
   .head { text-align: center; margin-bottom: 64px; }
   .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--blue); letter-spacing: .2em; margin-bottom: 12px; }
-  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: #f0f4ff; }
+  h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--foreground); }
 
   .timeline { list-style: none; margin: 0; padding: 0; position: relative; display: flex; flex-direction: column; gap: 40px; }
   .timeline::before {
@@ -51,11 +51,11 @@ import { EXPERIENCE } from "../data";
   .timeline-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
   .entry > div { flex: 1; }
   .entry-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 12px; }
-  h3 { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1rem; color: #f0f4ff; margin: 0; }
+  h3 { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1rem; color: var(--foreground); margin: 0; }
   .company { font-size: .85rem; font-weight: 600; margin-top: 2px; }
-  .period { text-align: right; font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: #6b7fa8; }
-  .location { color: #4a5a78; font-size: .68rem; margin-top: 2px; }
+  .period { text-align: right; font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--muted-foreground); }
+  .location { color: var(--faint); font-size: .68rem; margin-top: 2px; }
   .bullets { list-style: none; padding: 0; margin: 0; }
-  .bullets li { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; font-size: .82rem; color: #8898b8; line-height: 1.6; }
+  .bullets li { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; font-size: .82rem; color: var(--text-body); line-height: 1.6; }
   .bullets li span:first-child { flex-shrink: 0; margin-top: 3px; }
 </style>

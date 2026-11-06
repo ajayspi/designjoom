@@ -16,7 +16,7 @@ const socials = [
 ];
 ---
 
-<section id="contact" style="padding:120px 0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(59,130,246,0.08) 0%,transparent 70%)">
+<section id="contact" style="padding:120px 0;background:radial-gradient(ellipse 80% 60% at 50% 100%,var(--line-soft) 0%,transparent 70%)">
   <div class="max-w-3xl mx-auto px-6 text-center" data-reveal>
     <div class="eyebrow">CONTACT</div>
     <h2>Let's Build Something<br /><span class="text-shimmer">Extraordinary</span></h2>
@@ -26,7 +26,7 @@ const socials = [
       {chips.map(({ icon, label, href, color }) => (
         <a href={href} class="glass-bright chip" style={`border:1px solid ${color}22;--accent:${color}`}>
           <span style={`color:${color};display:inline-flex`}><Icon name={icon} size={16} /></span>
-          <span style="color:#a8b8d8;font-size:.85rem">{label}</span>
+          <span style="color:var(--secondary-foreground);font-size:.85rem">{label}</span>
         </a>
       ))}
     </div>
@@ -35,7 +35,7 @@ const socials = [
       <a href="https://designjoom.com" target="_blank" rel="noopener noreferrer" class="glass brand">
         <img src={djLogo.src} alt="DesignJoom" width={366} height={60} loading="lazy"
              style="width:100%;height:auto;max-width:220px;filter:invert(1) sepia(1) saturate(6) hue-rotate(195deg) brightness(1.4)" />
-        <span style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:#6b7fa8;letter-spacing:.1em">designjoom.com</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted-foreground);letter-spacing:.1em">designjoom.com</span>
       </a>
     </div>
 
@@ -51,8 +51,8 @@ const socials = [
 
 <style>
   .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .72rem; color: var(--blue); letter-spacing: .2em; margin-bottom: 12px; }
-  h2 { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; color: #f0f4ff; line-height: 1.1; }
-  .lede { margin-top: 16px; color: #6b7fa8; font-size: .95rem; line-height: 1.8; }
+  h2 { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; color: var(--foreground); line-height: 1.1; }
+  .lede { margin-top: 16px; color: var(--muted-foreground); font-size: .95rem; line-height: 1.8; }
   .chip {
     display: flex; align-items: center; gap: 12px;
     padding: 16px 24px; border-radius: 16px;
@@ -63,19 +63,19 @@ const socials = [
   .brand {
     display: flex; align-items: center; gap: 12px;
     padding: 12px 20px; border-radius: 16px;
-    border: 1px solid rgba(59, 130, 246, .15);
+    border: 1px solid var(--line);
     text-decoration: none;
     transition: border-color .3s, transform .3s;
   }
-  .brand:hover { border-color: rgba(59, 130, 246, .4); transform: translateY(-2px); }
+  .brand:hover { border-color: var(--line-strong); transform: translateY(-2px); }
   .soc {
     display: flex; align-items: center; gap: 8px;
     padding: 8px 16px; border-radius: 999px;
-    font-size: .8rem; color: #6b7fa8;
+    font-size: .8rem; color: var(--muted-foreground);
     font-family: 'JetBrains Mono', monospace;
-    border: 1px solid rgba(255, 255, 255, .06);
+    border: 1px solid var(--hairline);
     text-decoration: none;
     transition: color .2s, border-color .2s;
   }
-  .soc:hover { color: var(--blue); border-color: rgba(59, 130, 246, .3); }
+  .soc:hover { color: var(--blue); border-color: var(--line-strong); }
 </style>

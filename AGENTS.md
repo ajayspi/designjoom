@@ -1,6 +1,7 @@
 # designjoom.com — A V Ajay Kiran
 
-Astro 7 + Tailwind CSS v4. Static site, no UI framework. Deployed to Vercel from `main`.
+Astro 7 + Tailwind CSS v4. Static site, no UI framework. Deployed to Vercel from
+`master` — the only branch on `origin` (not `main`).
 
 ## Commands
 
@@ -68,6 +69,37 @@ docs/geo-prompt-panel.md  the 12 fixed prompts + monthly citation log
 - **prefers-reduced-motion is honoured** site-wide: framer is gone, so animations are
   CSS keyframes killed by the backstop in `index.css`, and the JS scripts check
   `matchMedia` before animating.
+- **Do not add Astro's `ClientRouter` for page transitions.** `Base.astro` runs six
+  decorative scripts guarded only by `DOMContentLoaded`; ClientRouter re-runs them on
+  every client navigation, double-binding their mousemove/RAF/observer listeners. Route
+  transitions are CSS-only (`#main` fade in `index.css`). Animate opacity, never
+  transform, on `#main` — a transform would make it the containing block for fixed
+  children mid-animation.
+- **Theme: two palettes, one token set.** `index.css` defines the dark palette on
+  `:root` and overrides it under `[data-theme="light"]`; the inline script in
+  `Base.astro`'s head applies the stored/OS choice before first paint (key `dj-theme`).
+  Components must never hardcode a neutral — the theme guard in `verify.mjs` fails the
+  build when one appears. Brand accents (`P.*` in `data.ts`) are identity and stay the
+  same in both themes. The logo's dark-mode `filter` is an inline style, so the light
+  override needs `!important`.
+- **`public/resume.html` is a copy of `resume-unified.html`** (repo root). Astro serves
+  `public/` verbatim and `Footer.astro` links to `/resume.html`, so re-copy the file
+  after editing the root one, or the site serves a stale résumé. Its "Download PDF"
+  button calls `window.print()` — there is no prebuilt PDF asset.
+- **The hero `<h1>` must contain `IDENTITY.name` verbatim.** `verify.mjs` asserts it, and
+  it is what makes the page read as a personal profile instead of a brand landing page.
+  Do not put a tagline in the `h1`; it goes in the `.editorial-sub` paragraph below.
+- **Every page under `src/pages/` must import `Base`.** `services.astro` and `work.astro`
+  once shipped without it and rendered as a bare fragment — no title, no nav, no footer,
+  no styles. `work.astro` also linked every card to `/work/<slug>`, routes that were
+  never built, and loaded `/imports/projects/*.webp` from `public/`, where those files
+  do not exist. Reuse the `SHOTS` import map from `Projects.astro`.
+- **There is no standalone `/contact` or `/team` page, and there should not be.** Both
+  were deleted: `/contact` was an unreachable, layout-less duplicate whose form had no
+  `action`, no field `name`s and no handler; `/team` fabricated a second person out of
+  this profile's own photo and bio. The nav's Contact link targets `/#contact`, the
+  homepage section in `components/Contact.astro`. Do not reintroduce a form without a
+  real endpoint — a dead form is a dishonest one.
 - **Content honesty is non-negotiable.** Every metric traces to a verified source in
   `src/data.ts`. No invented numbers, testimonials, clients or credentials. If a fact is
   unavailable, omit the element — do not approximate it.
@@ -76,4 +108,4 @@ docs/geo-prompt-panel.md  the 12 fixed prompts + monthly citation log
 
 `v1` is the original Figma Make site. `v2` is the React/Vite SPA (e8b1912), preserved
 because it was live until this migration; tag `pre-astro-vite` points at the same commit.
-`main` is the Astro site. Do not force-push `main`.
+`master` is the Astro site. Do not force-push `master`.

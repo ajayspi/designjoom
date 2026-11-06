@@ -74,8 +74,9 @@ AI Growth & Digital Transformation Leader (14+ years) with hands-on experience b
 
 ---
 
-## Certifications (Verified)
+## Education & Certifications (Verified)
 
+- **B.Tech, Computer Science Engineering** - Jawaharlal Nehru Technological University, Hyderabad (JNTUH) - 2006 – 2010
 - **HFI Certified User Experience Analyst (CXA)** — Human Factors International — Jan 2026
 - **Generative AI Mastermind** — Outskill — 2025
 - **Digital Marketing** — Google Digital Garage — 2023

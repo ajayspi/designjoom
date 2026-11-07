@@ -1,5 +1,7 @@
 # designjoom
 
+![designjoom.com - live site](docs/screenshots/designjoom.jpg)
+
 **A V Ajay Kiran — AI Growth & Digital Transformation Leader**
 
 Personal portfolio & agency website for designjoom (https://www.designjoom.com)
